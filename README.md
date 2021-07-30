@@ -2,4 +2,4 @@
 DSA project
 
 ## Flowchart
-![flowchart](pictures/flowchart.png)
+![flowchart](pictures/flowchart_v2.png)
