@@ -18,8 +18,5 @@
     <ClCompile Include="DSA-q2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include=".cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
