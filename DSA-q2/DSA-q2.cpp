@@ -2,13 +2,25 @@
 //
 
 #include <iostream>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello World!\n";
-    cout << "erwin like chicken rice";
+    ifstream read;
+    string line;
+    read.open("vac.txt");
+    
+    //read vacancy file
+    while (read) {
+        getline(read, line);
+        cout << line << endl;
+    }
+    read.close();
+
+    return 0;
 }
 
 
