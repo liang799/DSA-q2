@@ -9,9 +9,6 @@
 
 using namespace std;
 
-  
-
-
 class Sport {
 public:
     string name;
@@ -22,16 +19,15 @@ public:
 
 int main()
 {
-    Sport asport;
     ifstream read;
     string line; //to hold one row of string from vac file
     read.open("vac.txt");
    
     char letter, vac;
     int actvac=0, i = 0;
+    vector<Sport> sports;
 
     //read vacancy file
- 
     while (read) 
     {
         getline(read, line);
@@ -39,14 +35,26 @@ int main()
         vac = line.back();
         actvac = vac - '0'; //Convert space from char to int, the ASCII values of the characters are subtracted from each other
         
+        // Create an instance
+		Sport asport;
+
+        // Setter:
         asport.symbol = letter;
         asport.vacancy = actvac;
 
         cout << asport.symbol;
         cout << asport.vacancy << endl;
 
+        sports.push_back(asport);
     }
     read.close();
+
+
+    // Don't believe me?
+    vector<Sport>::iterator it;
+    for (it = sports.begin(); it != sports.end(); ++it) {
+        cout << (*it).symbol;
+    }
     
     return 0;
 }
