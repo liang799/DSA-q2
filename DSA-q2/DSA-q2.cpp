@@ -50,7 +50,7 @@ int main()
     read.close();
 
 
-    // Don't believe me?
+    // Don't believe me? I didnt say that
     vector<Sport>::iterator it;
     for (it = sports.begin(); it != sports.end(); ++it) {
         cout << (*it).vacancy;
