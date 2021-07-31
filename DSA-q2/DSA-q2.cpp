@@ -28,7 +28,7 @@ int main()
     vector<Sport> sports;
 
     //read vacancy file
-    while (read) 
+    while (!read.eof()) 
     {
         getline(read, line);
         letter = line.front();
@@ -53,7 +53,7 @@ int main()
     // Don't believe me?
     vector<Sport>::iterator it;
     for (it = sports.begin(); it != sports.end(); ++it) {
-        cout << (*it).symbol;
+        cout << (*it).vacancy;
     }
     
     return 0;
