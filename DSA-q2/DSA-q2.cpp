@@ -11,7 +11,7 @@ using namespace std;
 
 class Sport {
 public:
-    string name;
+    string name; //Do we need this? We have to say which student gets which sport
     string symbol;
     int vacancy;
     
@@ -42,9 +42,9 @@ int main()
         asport.symbol = letter;
         asport.vacancy = actvac;
 
+        //Test Output
         cout << asport.symbol;
         cout << asport.vacancy << endl;
-
         sports.push_back(asport);
     }
     read.close();
