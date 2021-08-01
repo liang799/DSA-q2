@@ -6,9 +6,7 @@ DSA project
 * [Group Report](https://docs.google.com/document/d/1nf_r0gE0NYXF8mCVTurptTGGjxzFqCf8iK9oEva5cBY/edit?usp=sharing)
 
 ## TODO List:
-- [ ] Complete implementation of incomplete flowchart before Monday?
-- [ ] Ask Lokesh to start contributing
-- [x] Example of a completed item
+Shifted to [projects](https://github.com/liang799/DSA-q2/projects)
 
 ## Flowchart
 ![flowchart](pictures/flowchart_v2.2.png)
