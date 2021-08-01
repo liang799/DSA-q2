@@ -7,7 +7,7 @@ DSA project
 ## TODO List:
 - [ ] Complete implementation of incomplete flowchart before Monday?
 - [ ] Ask Lokesh to start contributing
-- [x] Profit?
+- [x] Example of a completed item
 
 ## Flowchart
-![flowchart](pictures/flowchart_v2.png)
+![flowchart](pictures/flowchart_v2.2.png)
