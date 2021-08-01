@@ -41,7 +41,7 @@ int main()
         getline(read, line); //Copy read to line
 
         int find = line.find(bracket);
-        name = line.substr(0, find); //Find the name of the sport and assing to name
+        name = line.substr(0, find); //Find the name of the sport and assign to string variable name
       
         letter = line.front(); //Get symbol
         vac = line.back(); //Get vacancy
