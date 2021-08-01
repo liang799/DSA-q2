@@ -27,6 +27,8 @@ int main()
 {
     ifstream read("vac.txt");
     string line; //to hold one row of string from vac file
+    string bracket = "(";
+    string name;
    
     char letter, vac;
     int actvac=0, i = 0;
@@ -35,17 +37,26 @@ int main()
 
     //read vacancy file
     while (!read.eof()) {
-        getline(read, line);
-        letter = line.front();
-        vac = line.back();
-        actvac = vac - '0'; //Convert space from char to int, the ASCII values of the characters are subtracted from each other
+
+        getline(read, line); //Copy read to line
+
+        int find = line.find(bracket);
+        name = line.substr(0, find); //Find the name of the sport and assing to name
+      
+        letter = line.front(); //Get symbol
+        vac = line.back(); //Get vacancy
+        actvac = vac - '0'; //Convert vacancy from char to int, the ASCII values of the characters are subtracted from each other
         
-        asport.symbol = letter;
+        asport.name = name;
+        asport.symbol = letter; 
         asport.vacancy = actvac;
+        
 
         //Test Output
         cout << asport.symbol;
         cout << asport.vacancy << endl;
+        cout << asport.name<< endl;
+        cout << "             " << endl;
         sports.push_back(asport);
     }
     read.close();
