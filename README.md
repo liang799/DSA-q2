@@ -6,7 +6,7 @@ DSA project
 * [Group Report](https://docs.google.com/document/d/1nf_r0gE0NYXF8mCVTurptTGGjxzFqCf8iK9oEva5cBY/edit?usp=sharing)
 
 ## TODO List:
-Shifted to [projects](https://github.com/liang799/DSA-q2/projects)
+Shifted to [projects](https://github.com/liang799/DSA-q2/projects/1)
 
 ## Flowchart
 ![flowchart](pictures/flowchart_v2.2.png)
