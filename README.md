@@ -1,5 +1,5 @@
 # DSA-q2
-DSA project
+DSA project submit by **9 Aug 2021** for free **10 marks!**
 
 ## Useful Links:
 * [Presentation Slides](https://docs.google.com/presentation/d/1VJAfc5MLgw_9Da2TqtMTnclgfCCYI-qh6GI19ojEuoU/edit#slide=id.p)
