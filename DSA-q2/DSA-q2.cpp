@@ -10,7 +10,8 @@ using namespace std;
 // I suggest that we move all these to a seperate file:
 class Sport {
 public:
-    string name; //Do we need this? We have to say which student gets which sport
+    string name; //Do we need this? We have to say which student gets which sport. I would suggest that we create a vector instead of string to store the names. For future cases similar 
+    // this, please open an issue on github
     string symbol;
     int vacancy;
 };
