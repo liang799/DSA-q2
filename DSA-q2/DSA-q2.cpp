@@ -96,12 +96,78 @@ int main()
 
             it++;
     }
-
+    it = stud.begin();
+    i = sports.begin();
+    cout << " Round 1 Output " << endl;
+    cout << "================== " << endl;
     for (it = stud.begin(); it != stud.end(); it++)
     {
         cout <<(*it).name<<" = "<<(*it).allocated << endl;
     }
+    cout << "================== " << endl;
+    cout << " Leftover Vacancy " << endl;
+    for (i = sports.begin(); i != sports.end(); i++)
+    {
+        cout << (*i).leftover_vacancy << endl;
+    }
+
+    it = stud.begin();
+    i = sports.begin(); //reset
     
+    //Round 2 test
+    while (it != stud.end())
+    {
+        i = sports.begin();
+
+        for (int x = 0; x <= 3;) // Check all 3 sports competition
+        {
+            if ((*it).win[x] == 1) // Check if choices 1-3 is 1
+            {
+                while (i != sports.end())
+                {
+
+                    if ((*i).symbol == (*it).choices[x+1] && (*i).leftover_vacancy > 0) // To find the location of *i.symbol so that can decrement *i.leftover_vacancy
+                    {
+
+                        (*it).allocated = (*it).choices[x+1]; // I have no idea why its x+1 instead of just x.(Refer to for loop)
+                        (*i).leftover_vacancy--; //Decrement new sport. Idk how to increment the old sport as need to find the location.
+                        break;
+                    }
+                    else
+                        i++;
+
+                }
+               
+                break; 
+            }
+            else
+                x++;
+
+
+
+        }
+
+
+        it++;
+    }
+
+    it = stud.begin();
+    i = sports.begin(); //reset
+
+    cout << " Round 2 Output " << endl;
+    cout << "================== " << endl;
+    for (it = stud.begin(); it != stud.end(); it++)
+    {
+
+        cout << (*it).name << " = " << (*it).allocated << " " << endl;
+    }
+    cout <<"================== "<< endl;
+    cout << " Leftover Vacancy " << endl;
+    for(i=sports.begin();i!=sports.end();i++)
+    {
+        cout << (*i).leftover_vacancy << endl;
+    }
+
     return 0;
 }
 
