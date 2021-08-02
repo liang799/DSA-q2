@@ -22,7 +22,7 @@ struct SpStudent {
     double gpa;
     char choices[3];
     char allocated = '#';
-    int allocatedChoice = 9999;
+    int allocatedChoice = 999;
     bool win[3];
 };
 
@@ -66,26 +66,26 @@ int main()
 
     read.open("student.txt");
     unsigned int lineNum = 1;
-	SpStudent aStudent;
+    SpStudent aStudent;
     vector<SpStudent> stud;
 
     while (!read.eof()) {
-		getline(read, aStudent.name);
-		cout << aStudent.name << ", ";
-		read >> aStudent.gpa;
-		cout << aStudent.gpa << endl;
-		getline(read, line); // getline is needed to remove the line
-		read >> aStudent.choices[0] >> aStudent.choices[1] >> aStudent.choices[2];
-		getline(read, line);
-		read >> aStudent.win[0] >> aStudent.win[1] >> aStudent.win[1];
-		getline(read, line);
-		stud.push_back(aStudent);
+        getline(read, aStudent.name);
+        cout << aStudent.name << ", ";
+        read >> aStudent.gpa;
+        cout << aStudent.gpa << endl;
+        getline(read, line); // getline is needed to remove the line
+        read >> aStudent.choices[0] >> aStudent.choices[1] >> aStudent.choices[2];
+        getline(read, line);
+        read >> aStudent.win[0] >> aStudent.win[1] >> aStudent.win[1];
+        getline(read, line);
+        stud.push_back(aStudent);
     }
     read.close();
 
     vector<SpStudent>::iterator it; //Round 1
     vector<Sport>::iterator i;
-    for (it = stud.begin(); it !=stud.end(); ) {
+    for (it = stud.begin(); it != stud.end(); ) {
         cout << (*it).name << endl;
         for (i = sports.begin(); i != sports.end();) {
             if ((*it).choices[0] == (*i).symbol) {
@@ -95,15 +95,18 @@ int main()
                 }
                 else
                     i++;
-            } else
+            }
+            else
                 it++;
         }
     }
-        
+
     // test output
-    *it=a
-    
-    
+    for (it = stud.begin(); it != stud.end(); it++)
+    {
+        cout << (*it).allocated << endl;
+    }
+
     return 0;
 }
 
