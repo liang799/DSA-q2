@@ -70,7 +70,7 @@ int main()
         getline(read, line); // getline is needed to remove the line
         read >> aStudent.choices[0] >> aStudent.choices[1] >> aStudent.choices[2];
         getline(read, line);
-        read >> aStudent.win[0] >> aStudent.win[1] >> aStudent.win[1];
+        read >> aStudent.win[0] >> aStudent.win[1] >> aStudent.win[2];
         getline(read, line);
         stud.push_back(aStudent);
     }
@@ -119,17 +119,17 @@ int main()
     {
         i = sports.begin();
 
-        for (int x = 0; x <= 3;) // Check all 3 sports competition
+        for (int x = 0; x < 3;) // Check all 3 sports competition
         {
             if ((*it).win[x] == 1) // Check if choices 1-3 is 1
             {
                 while (i != sports.end())
                 {
 
-                    if ((*i).symbol == (*it).choices[x+1] && (*i).leftover_vacancy > 0) // To find the location of *i.symbol so that can decrement *i.leftover_vacancy
+                    if ((*i).symbol == (*it).choices[x] && (*i).leftover_vacancy > 0) // To find the location of *i.symbol so that can decrement *i.leftover_vacancy
                     {
 
-                        (*it).allocated = (*it).choices[x+1]; // I have no idea why its x+1 instead of just x.(Refer to for loop)
+                        (*it).allocated = (*it).choices[x]; // I have no idea why its x+1 instead of just x.(Refer to for loop)
                         (*i).leftover_vacancy--; //Decrement new sport. Idk how to increment the old sport as need to find the location.
                         break;
                     }

@@ -9,4 +9,4 @@ S T R
 Toeh Sam
 2.1
 D C G
-0 0 1
+0 1 0
