@@ -80,9 +80,8 @@ int main()
     vector<Sport>::iterator i=sports.begin();
 
     while (it!=stud.end())
-    {
-        cout << (*it).name << endl;
-       
+    {  
+        i = sports.begin();
         while (i != sports.end())
         {
             if ((*it).choices[0] == (*i).symbol && (*i).leftover_vacancy > 0)
@@ -116,7 +115,7 @@ int main()
     // test output
     for (it = stud.begin(); it != stud.end(); it++)
     {
-        cout << (*it).allocated << endl;
+        cout <<(*it).name<<" = "<<(*it).allocated << endl;
     }
     
     return 0;
