@@ -12,4 +12,4 @@ Shifted to [projects](https://github.com/liang799/DSA-q2/projects/1)
 ### Reading Files
 ![files](pictures/readFiles_v1.0.png)
 ### Round 1
-![one](pictues/roundOne_v1.0.png)
+![one](pictures/roundOne_v1.0.png)
