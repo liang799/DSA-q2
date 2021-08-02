@@ -88,6 +88,7 @@ int main()
             {
                 (*it).allocated = (*i).symbol;
                 (*i).leftover_vacancy--;
+                break;
             }
             else
                 i++;
