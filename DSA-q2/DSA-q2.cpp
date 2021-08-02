@@ -12,9 +12,9 @@ using namespace std;
 class Sport {
 public:
     string name; // For future cases similar to this, please open an issue on github
-    string symbol;
+    char symbol;
     int vacancy;
-    int leftover_vaccany; //intially same as vacancy
+    int leftover_vacancy; //intially same as vacancy
 };
 
 struct SpStudent {
@@ -53,7 +53,7 @@ int main()
         asport.name = name;
         asport.symbol = letter; 
         asport.vacancy = actvac;
-        asport.leftover_vaccany = actvac;
+        asport.leftover_vacancy = actvac;
 
         //Test Output
         cout << asport.symbol;
@@ -64,41 +64,45 @@ int main()
     }
     read.close();
 
-
-    // Don't believe me? I didnt say that
-    /*
-    vector<sport>::iterator it;
-    for (it = sports.begin(); it != sports.end(); ++it) {
-        cout << (*it).vacancy;
-    }
-    */
     read.open("student.txt");
     unsigned int lineNum = 1;
-	SpStudent student;
-    vector<SpStudent> students;
-    vector<SpStudent>::iterator it;
+	SpStudent aStudent;
+    vector<SpStudent> stud;
 
     while (!read.eof()) {
-		getline(read, student.name);
-		cout << student.name << ", ";
-		read >> student.gpa;
-		cout << student.gpa << endl;
+		getline(read, aStudent.name);
+		cout << aStudent.name << ", ";
+		read >> aStudent.gpa;
+		cout << aStudent.gpa << endl;
 		getline(read, line); // getline is needed to remove the line
-		read >> student.choices[0] >> student.choices[1] >> student.choices[2];
+		read >> aStudent.choices[0] >> aStudent.choices[1] >> aStudent.choices[2];
 		getline(read, line);
-		read >> student.win[0] >> student.win[1] >> student.win[1];
+		read >> aStudent.win[0] >> aStudent.win[1] >> aStudent.win[1];
 		getline(read, line);
-        students.push_back(student);
+		stud.push_back(aStudent);
     }
     read.close();
 
-    for (it = students.begin(); it != students.end(); ++it)
+    vector<SpStudent>::iterator it; //Round 1
+    vector<Sport>::iterator i;
+    for (it = stud.begin(); it !=stud.end(); ) {
         cout << (*it).name << endl;
-
-
-    list <Sport> choice;
-    list <Sport> ::iterator it2;
-
+        for (i = sports.begin(); i != sports.end();) {
+            if ((*it).choices[0] == (*i).symbol) {
+                if ((*i).leftover_vacancy > 0) {
+                    (*it).allocated = (*i).symbol;
+                    (*i).leftover_vacancy--;
+                }
+                else
+                    i++;
+            } else
+                it++;
+        }
+    }
+        
+    // test output
+    *it=a
+    
     
     return 0;
 }

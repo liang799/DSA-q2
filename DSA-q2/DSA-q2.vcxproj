@@ -145,6 +145,10 @@
     <Text Include="student.txt" />
     <Text Include="vac.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sport.h" />
+    <ClInclude Include="SpStudent.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
