@@ -30,7 +30,7 @@ int main()
     string name;
    
     char letter, vac;
-    int actvac=0, i = 0;
+    int actvac = 0;
     vector<Sport> sports;
 	Sport asport;
 
@@ -72,6 +72,7 @@ int main()
     unsigned int lineNum = 1;
 	SpStudent student;
     vector<SpStudent> students;
+
     while (!read.eof()) {
 		getline(read, student.name);
 		cout << student.name << ", ";
@@ -84,6 +85,8 @@ int main()
 		getline(read, line);
     }
     read.close();
+
+    
 
 
 
