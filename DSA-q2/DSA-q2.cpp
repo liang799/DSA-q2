@@ -97,23 +97,6 @@ int main()
             it++;
     }
 
-    /*for (it = stud.begin(); it != stud.end(); ) {
-        cout << (*it).name << endl;
-        for (i = sports.begin(); i != sports.end();) {
-            if ((*it).choices[0] == (*i).symbol) {
-                if ((*i).leftover_vacancy > 0) {
-                    (*it).allocated = (*i).symbol;
-                    (*i).leftover_vacancy--;
-                }
-                else
-                    i++;
-            }
-            else
-                i++;
-        }
-    }
-    */
-    // test output
     for (it = stud.begin(); it != stud.end(); it++)
     {
         cout <<(*it).name<<" = "<<(*it).allocated << endl;
