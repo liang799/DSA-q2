@@ -14,12 +14,15 @@ public:
     string name; // For future cases similar to this, please open an issue on github
     string symbol;
     int vacancy;
+    int leftover_vaccany; //intially same as vacancy
 };
 
 struct SpStudent {
     string name;
     double gpa;
     char choices[3];
+    char allocated = '#';
+    int allocatedChoice = 9999;
     bool win[3];
 };
 
@@ -50,7 +53,7 @@ int main()
         asport.name = name;
         asport.symbol = letter; 
         asport.vacancy = actvac;
-        
+        asport.leftover_vaccany = actvac;
 
         //Test Output
         cout << asport.symbol;
