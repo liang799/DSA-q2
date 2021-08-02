@@ -9,4 +9,7 @@ DSA project submit by **9 Aug 2021** for free **10 marks!**
 Shifted to [projects](https://github.com/liang799/DSA-q2/projects/1)
 
 ## Flowchart
-![flowchart](pictures/flowchart_v2.2.png)
+### Reading Files
+![files](pictures/readFiles_v1.0.png)
+### Round 1
+![one](pictures/roundOne_v1.0.png)
