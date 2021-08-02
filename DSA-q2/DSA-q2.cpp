@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <list>
 using namespace std;
 
 // I suggest that we move all these to a seperate file:
@@ -72,6 +73,7 @@ int main()
     unsigned int lineNum = 1;
 	SpStudent student;
     vector<SpStudent> students;
+    vector<SpStudent>::iterator it;
 
     while (!read.eof()) {
 		getline(read, student.name);
@@ -83,12 +85,16 @@ int main()
 		getline(read, line);
 		read >> student.win[0] >> student.win[1] >> student.win[1];
 		getline(read, line);
+        students.push_back(student);
     }
     read.close();
 
-    
+    for (it = students.begin(); it != students.end(); ++it)
+        cout << (*it).name << endl;
 
 
+    list <Sport> choice;
+    list <Sport> ::iterator it2;
 
     
     return 0;
