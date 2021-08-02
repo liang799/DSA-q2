@@ -55,11 +55,6 @@ int main()
         asport.vacancy = actvac;
         asport.leftover_vacancy = actvac;
 
-        //Test Output
-        cout << asport.symbol;
-        cout << asport.vacancy << endl;
-        cout << asport.name<< endl;
-        cout << "             " << endl;
         sports.push_back(asport);
     }
     read.close();
@@ -70,10 +65,8 @@ int main()
     vector<SpStudent> stud;
 
     while (!read.eof()) {
-        getline(read, aStudent.name);
-        cout << aStudent.name << ", ";
+        getline(read, aStudent.name);   
         read >> aStudent.gpa;
-        cout << aStudent.gpa << endl;
         getline(read, line); // getline is needed to remove the line
         read >> aStudent.choices[0] >> aStudent.choices[1] >> aStudent.choices[2];
         getline(read, line);
@@ -83,9 +76,28 @@ int main()
     }
     read.close();
 
-    vector<SpStudent>::iterator it; //Round 1
-    vector<Sport>::iterator i;
-    for (it = stud.begin(); it != stud.end(); ) {
+    vector<SpStudent>::iterator it=stud.begin(); //Round 1
+    vector<Sport>::iterator i=sports.begin();
+
+    while (it!=stud.end())
+    {
+        cout << (*it).name << endl;
+       
+        while (i != sports.end())
+        {
+            if ((*it).choices[0] == (*i).symbol && (*i).leftover_vacancy > 0)
+            {
+                (*it).allocated = (*i).symbol;
+                (*i).leftover_vacancy--;
+            }
+            else
+                i++;
+        }
+
+            it++;
+    }
+
+    /*for (it = stud.begin(); it != stud.end(); ) {
         cout << (*it).name << endl;
         for (i = sports.begin(); i != sports.end();) {
             if ((*it).choices[0] == (*i).symbol) {
@@ -97,16 +109,16 @@ int main()
                     i++;
             }
             else
-                it++;
+                i++;
         }
     }
-
+    */
     // test output
     for (it = stud.begin(); it != stud.end(); it++)
     {
         cout << (*it).allocated << endl;
     }
-
+    
     return 0;
 }
 
