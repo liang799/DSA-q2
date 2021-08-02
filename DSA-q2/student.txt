@@ -5,7 +5,7 @@ G D R
 Asharf
 4.0
 S T R
-0 0 1
+0 0 0
 Toeh Sam
 2.1
 D C G

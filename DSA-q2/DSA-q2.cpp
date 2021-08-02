@@ -129,7 +129,7 @@ int main()
                     if ((*i).symbol == (*it).choices[x] && (*i).leftover_vacancy > 0) // To find the location of *i.symbol so that can decrement *i.leftover_vacancy
                     {
 
-                        (*it).allocated = (*it).choices[x]; // I have no idea why its x+1 instead of just x.(Refer to for loop)
+                        (*it).allocated = (*it).choices[x]; // Allocate new sport.
                         (*i).leftover_vacancy--; //Decrement new sport. Idk how to increment the old sport as need to find the location.
                         break;
                     }
