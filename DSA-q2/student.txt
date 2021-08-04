@@ -1,7 +1,7 @@
 Alex kong
 3.8
 G D R
-0 0 1
+0 1 0
 Asharf
 4.0
 S T R
