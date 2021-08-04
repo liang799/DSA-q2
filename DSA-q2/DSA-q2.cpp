@@ -15,6 +15,7 @@ public:
     char symbol;
     int vacancy;
     int leftover_vacancy; //intially same as vacancy
+    bool special = 0;
 };
 
 struct SpStudent {
@@ -48,14 +49,18 @@ int main()
       
         letter = line.front(); //Get symbol
         vac = line.back(); //Get vacancy
-        actvac = vac - '0'; //Convert vacancy from char to int, the ASCII values of the characters are subtracted from each other
-        
-        asport.name = name;
-        asport.symbol = letter; 
-        asport.vacancy = actvac;
-        asport.leftover_vacancy = actvac;
+        if (line.back() > 'A' && line.back() < 'Z') {
+            asport.special = 1; // This sport is special
+        } else {
+			actvac = vac - '0'; //Convert vacancy from char to int, the ASCII values of the characters are subtracted from each other
+			
+			asport.name = name;
+			asport.symbol = letter; 
+			asport.vacancy = actvac;
+			asport.leftover_vacancy = actvac;
 
-        sports.push_back(asport);
+			sports.push_back(asport);
+        }
     }
     read.close();
 
