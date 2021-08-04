@@ -25,7 +25,12 @@ struct SpStudent {
     char allocated = '#';
     int allocatedChoice = 999;
     bool win[3];
+    bool compareGPA(SpStudent);
 };
+
+bool SpStudent::compareGPA(SpStudent rival) {
+    return (gpa > rival.gpa);
+}
 
 int main()
 {
@@ -51,6 +56,10 @@ int main()
         vac = line.back(); //Get vacancy
         if (line.back() > 'A' && line.back() < 'Z') {
             asport.special = 1; // This sport is special
+            asport.symbol = '$'; //by right name shoud work but we more kiasu
+            asport.vacancy = 3;
+			asport.leftover_vacancy = actvac;
+			sports.push_back(asport);
         } else {
 			actvac = vac - '0'; //Convert vacancy from char to int, the ASCII values of the characters are subtracted from each other
 			
@@ -91,10 +100,11 @@ int main()
         {
             if ((*it).choices[0] == (*i).symbol && (*i).leftover_vacancy > 0)
             {
+                if ((*it).win[0] == 
                 (*it).allocated = (*i).symbol;
                 (*i).leftover_vacancy--;
                 break;
-            }
+            } 
             else
                 i++;
         }
