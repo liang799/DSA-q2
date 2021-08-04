@@ -18,6 +18,12 @@
     <ClCompile Include="DSA-q2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpStudent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="student.txt">

@@ -1,69 +1,53 @@
 // DSA Mini Project by Tian Pok, Harith, Lokesh. Topic 2
-// DSA-q2.cpp : This file contains the 'main' function. Program execution begins and ends there.
-
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <list>
 using namespace std;
+#include "sport.h"
+#include "SpStudent.h"
 
-// I suggest that we move all these to a seperate file:
-class Sport {
-public:
-    string name; // For future cases similar to this, please open an issue on github
-    char symbol;
-    int vacancy;
-    int leftover_vacancy; //intially same as vacancy
-    bool special = 0;
-};
-
-struct SpStudent {
-    string name;
-    double gpa;
-    char choices[3];
-    char allocated = '#';
-    int allocatedChoice = 999;
-    bool win[3];
-    bool compareGPA(SpStudent);
-};
-
-bool SpStudent::compareGPA(SpStudent rival) {
-    return (gpa > rival.gpa);
+void printResults(int round, vector<SpStudent> students, vector<Sport> sports)
+{
+    cout << " Round "<< round <<" Output " << endl;
+    cout << "================== " << endl;
+    for (vector<SpStudent>::iterator it = students.begin(); it != students.end(); it++)
+        cout <<(*it).name<<" = "<<(*it).allocated << endl;
+    cout << "================== " << endl;
+    cout << " Leftover Vacancy " << endl;
+    for (vector<Sport>::iterator i = sports.begin(); i != sports.end(); i++)
+        cout << (*i).leftover_vacancy << endl;
 }
 
 int main()
 {
     ifstream read("vac.txt");
     string line; //to hold one row of string from vac file
-    string bracket = "(";
-    string name;
+    //string name;
    
     char letter, vac;
     int actvac = 0;
     vector<Sport> sports;
 	Sport asport;
+    char special;
 
     //read vacancy file
     while (!read.eof()) {
 
         getline(read, line); //Copy read to line
 
-        int find = line.find(bracket);
-        name = line.substr(0, find); //Find the name of the sport and assign to string variable name
+        //int find = line.find( "(" ); // I suggest we remove this line as special don't have "("
+        //name = line.substr(0, find); //Find the name of the sport and assign to string variable name
       
         letter = line.front(); //Get symbol
         vac = line.back(); //Get vacancy
-        if (line.back() > 'A' && line.back() < 'Z') {
-            asport.special = 1; // This sport is special
-            asport.symbol = '$'; //by right name shoud work but we more kiasu
-            asport.vacancy = 3;
-			asport.leftover_vacancy = actvac;
-			sports.push_back(asport);
+        if (line.back() > 'A' && line.back() < 'Z') { 
+            special = letter;
         } else {
 			actvac = vac - '0'; //Convert vacancy from char to int, the ASCII values of the characters are subtracted from each other
 			
-			asport.name = name;
+			//asport.name = name;
 			asport.symbol = letter; 
 			asport.vacancy = actvac;
 			asport.leftover_vacancy = actvac;
@@ -90,44 +74,41 @@ int main()
     }
     read.close();
 
-    vector<SpStudent>::iterator it=stud.begin(); //Round 1
+    /* -------------------Round 1 ----------------------------------*/
+    vector<SpStudent>::iterator it;
     vector<Sport>::iterator i=sports.begin();
-
-    while (it!=stud.end())
+    vector<SpStudent> noWinning; // first choice but no winning record
+    for (it=stud.begin(); it != stud.end(); it++)
     {  
         i = sports.begin();
         while (i != sports.end())
         {
-            if ((*it).choices[0] == (*i).symbol && (*i).leftover_vacancy > 0)
+            //find the sport that is special set the steal attempts
+            if ((*i).symbol == special)
+                (*i).steal = 3;
+
+            //prioritize students with winning record
+            if ((*it).choices[0] == (*i).symbol && (*i).leftover_vacancy > 0 )
             {
-                if ((*it).win[0] == 
-                (*it).allocated = (*i).symbol;
-                (*i).leftover_vacancy--;
-                break;
+                if ((*it).win[0] == true) {
+                    (*it).allocated = (*i).symbol;
+                    (*i).leftover_vacancy--;
+                    break;
+                }
+                else {
+                    noWinning.push_back(*it); //add to list
+                    break;
+                }
             } 
             else
                 i++;
         }
+    }
+    // list of people with first choice, but no winning record
+    // gpa and sports choice are all over the place.
 
-            it++;
-    }
-    it = stud.begin();
-    i = sports.begin();
-    cout << " Round 1 Output " << endl;
-    cout << "================== " << endl;
-    for (it = stud.begin(); it != stud.end(); it++)
-    {
-        cout <<(*it).name<<" = "<<(*it).allocated << endl;
-    }
-    cout << "================== " << endl;
-    cout << " Leftover Vacancy " << endl;
-    for (i = sports.begin(); i != sports.end(); i++)
-    {
-        cout << (*i).leftover_vacancy << endl;
-    }
 
-    it = stud.begin();
-    i = sports.begin(); //reset
+
     
     //Round 2 test
     while (it != stud.end())
@@ -164,23 +145,6 @@ int main()
 
 
         it++;
-    }
-
-    it = stud.begin();
-    i = sports.begin(); //reset
-
-    cout << " Round 2 Output " << endl;
-    cout << "================== " << endl;
-    for (it = stud.begin(); it != stud.end(); it++)
-    {
-
-        cout << (*it).name << " = " << (*it).allocated << " " << endl;
-    }
-    cout <<"================== "<< endl;
-    cout << " Leftover Vacancy " << endl;
-    for(i=sports.begin();i!=sports.end();i++)
-    {
-        cout << (*i).leftover_vacancy << endl;
     }
 
     return 0;

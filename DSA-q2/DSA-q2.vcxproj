@@ -140,6 +140,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DSA-q2.cpp" />
+    <ClCompile Include="sport.cpp" />
+    <ClCompile Include="SpStudent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="student.txt" />

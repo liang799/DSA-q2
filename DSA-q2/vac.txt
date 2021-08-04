@@ -4,3 +4,4 @@ Gaming(G) : 4
 Running(R) : 8
 Swimming(S) :4
 Tennis(T): 4
+Special: G
