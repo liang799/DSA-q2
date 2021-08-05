@@ -9,6 +9,8 @@ struct SpStudent {
     char allocated = '#';
     int allocatedChoice = 999;
     bool win[3];
-    bool compareGPA(SpStudent);
+    static bool compareGPA(const SpStudent& moi, const SpStudent& rival) {
+		return (moi.gpa > rival.gpa);
+    }
     bool stolen = 0;
 };

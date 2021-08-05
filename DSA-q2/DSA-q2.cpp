@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <list>
+#include <algorithm>
 using namespace std;
 #include "sport.h"
 #include "SpStudent.h"
@@ -96,7 +96,7 @@ int main()
                     break;
                 }
                 else {
-                    noWinning.push_back(*it); //add to list
+                    noWinning.push_back(*it); //add to vector
                     break;
                 }
             } 
@@ -104,13 +104,34 @@ int main()
                 i++;
         }
     }
-    // list of people with first choice, but no winning record
+    // vector of people with first choice, but no winning record
     // gpa and sports choice are all over the place.
+    // sort according to gpa. the higher gpa go first, get choice
+    // https://stackoverflow.com/questions/12787165/sort-vector-of-class-in-c
+	sort(noWinning.begin(), noWinning.end(), SpStudent::compareGPA);
 
+    // check results
+    for (vector<SpStudent>::iterator it = noWinning.begin(); it != noWinning.end(); it++)
+        cout << (*it).name << ", " << (*it).gpa << endl;
 
+	i = sports.begin();
+    for (vector<SpStudent>::iterator itr = noWinning.begin(); itr != noWinning.end(); itr++) {
+        i = sports.begin();
+        while (i != sports.end())
+        {
+            //prioritize students with winning record
+            if ((*itr).choices[0] == (*i).symbol && (*i).leftover_vacancy > 0 ) {
+				(*itr).allocated = (*i).symbol;
+				(*i).leftover_vacancy--;
+                break;
+            } else
+                i++;
+        }
+    }
 
+    printResults(1, stud, sports);
     
-    //Round 2 test
+    /* --------------Round 2---------------------------------*/
     while (it != stud.end())
     {
         i = sports.begin();
