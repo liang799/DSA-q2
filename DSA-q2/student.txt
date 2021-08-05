@@ -10,3 +10,7 @@ Toeh Sam
 2.1
 D C G
 0 1 0
+Yi Quan
+4.0
+D T G
+1 0 0

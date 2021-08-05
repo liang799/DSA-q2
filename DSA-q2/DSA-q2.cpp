@@ -8,12 +8,15 @@ using namespace std;
 #include "sport.h"
 #include "SpStudent.h"
 
-void printResults(int round, vector<SpStudent> students, vector<Sport> sports)
+void printResults(int round, vector<SpStudent> winners, vector<SpStudent> nowin, vector<Sport> sports)
 {
-    cout << " Round "<< round <<" Output " << endl;
+    cout << "\n Round "<< round <<" Output " << endl;
     cout << "================== " << endl;
-    for (vector<SpStudent>::iterator it = students.begin(); it != students.end(); it++)
+    vector<SpStudent>::iterator itr;
+    for (vector<SpStudent>::iterator it = winners.begin(); it != winners.end(); it++)
         cout <<(*it).name<<" = "<<(*it).allocated << endl;
+    for (vector<SpStudent>::iterator itr = nowin.begin(); itr!= nowin.end(); itr++)
+        cout <<(*itr).name<<" = "<<(*itr).allocated << endl;
     cout << "================== " << endl;
     cout << " Leftover Vacancy " << endl;
     for (vector<Sport>::iterator i = sports.begin(); i != sports.end(); i++)
@@ -77,8 +80,10 @@ int main()
     /* -------------------Round 1 ----------------------------------*/
     vector<SpStudent>::iterator it;
     vector<Sport>::iterator i=sports.begin();
+    vector<SpStudent> winner = stud;   // first choice with winning
     vector<SpStudent> noWinning; // first choice but no winning record
-    for (it=stud.begin(); it != stud.end(); it++)
+    vector<std::string>::size_type tmp;
+    for (it=stud.begin(), tmp = 0; it != stud.end(); it++, tmp++)
     {  
         i = sports.begin();
         while (i != sports.end())
@@ -97,6 +102,8 @@ int main()
                 }
                 else {
                     noWinning.push_back(*it); //add to vector
+                    winner.erase(winner.begin() + tmp);
+                    tmp--;
                     break;
                 }
             } 
@@ -111,8 +118,8 @@ int main()
 	sort(noWinning.begin(), noWinning.end(), SpStudent::compareGPA);
 
     // check results
-    for (vector<SpStudent>::iterator it = noWinning.begin(); it != noWinning.end(); it++)
-        cout << (*it).name << ", " << (*it).gpa << endl;
+    //for (vector<SpStudent>::iterator it = noWinning.begin(); it != noWinning.end(); it++)
+        //cout << (*it).name << ", " << (*it).gpa << endl;
 
 	i = sports.begin();
     for (vector<SpStudent>::iterator itr = noWinning.begin(); itr != noWinning.end(); itr++) {
@@ -129,7 +136,7 @@ int main()
         }
     }
 
-    printResults(1, stud, sports);
+    printResults(1, winner, noWinning, sports);
     
     /* --------------Round 2---------------------------------*/
     while (it != stud.end())
