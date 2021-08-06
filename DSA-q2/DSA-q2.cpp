@@ -11,7 +11,7 @@ using namespace std;
 void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports)
 {
     unsigned int choice = round;
-    if (round == 1 || round == 2)
+    if (round == 2)
         choice = 1;
 
     cout << "\n Round "<< round <<" Output " << endl;
@@ -161,7 +161,7 @@ int main()
     printResults(1, allocated, sports);
     
     /*--------------------------------- Round 2 ---------------------------------*/
-    for (it = stud.begin(); it != stud.end(); it++) {
+    for (it = stud.begin(); it != stud.end(); it++) { //IMPORTANT: pleaase use allocated vector instead of stud
         for (i = sports.begin(); i != sports.end(); i++) {
             
             // Check if special able to steal students and if special have vacancy
@@ -170,7 +170,7 @@ int main()
                 for (int x = 0; x < 3;x++) { //Check all choices of each student 
                     if ((*it).choices[x]==special && (*it).win[x]==true) { //Check if choices have special and win record
                         (*it).allocated = special;
-                       cout<<"gay"<<endl;
+                       cout<<"gay"<<endl; //thanks for printing that, i really appreciate it.
                         (*i).leftover_vacancy--;
                         (*i).steal--;
                         allocated.push_back(*it);
@@ -185,5 +185,3 @@ int main()
     printResults(2, allocated, sports);
     return 0;
 }
-
-
