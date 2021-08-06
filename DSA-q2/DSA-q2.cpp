@@ -86,10 +86,9 @@ int main()
     vector<SpStudent>::iterator it;
     vector<Sport>::iterator i;
     vector<SpStudent> noWin; //students who do not have a winning record
+    vector<SpStudent> allocated;   //students who are allocated a sport
     vector<SpStudent> noAllocated; //students who are not allocated
     for (it = stud.begin(); it != stud.end(); it++) {
-        i = sports.begin();
-
         for (i = sports.begin(); i != sports.end(); i++){
             // Find the sport that is special set the steal attempts
             if ((*i).symbol == special)
@@ -100,6 +99,7 @@ int main()
                 if ((*it).win[0] == true) {
                     (*it).allocated = (*i).symbol;
                     (*i).leftover_vacancy--;
+                    allocated.push_back(*it);
                     break;
                 } else {
                     noWin.push_back(*it); 
@@ -110,25 +110,9 @@ int main()
         }
     }
 
-    // Removing all the non winners
-    vector<SpStudent> allocated = stud;   //students who are allocated a sport
-    int tmp;
-    for (it = stud.begin(), tmp = 0; it != stud.end(); it++, tmp++) {
-        i = sports.begin();
-        for (i = sports.begin(); i != sports.end(); i++) {
-            if ( (*it).win[0] == 0 ) {
-                allocated.erase(allocated.begin() + tmp);
-                tmp--; //need to decrement as the size of allocated got smaller by 1
-                break;
-            } else
-                break;
-        }
-    }
-
     // Sort according to higher gpa
 	sort(noWin.begin(), noWin.end(), SpStudent::compareGPA);
 
-	i = sports.begin();
     for (vector<SpStudent>::iterator itr = noWin.begin(); itr != noWin.end(); itr++) {
         for (i = sports.begin(); i != sports.end(); i++) {
             // Prioritize students with higher gpa 
