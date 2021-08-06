@@ -110,12 +110,11 @@ int main()
             // Prioritize students with winning record
             if ((*it).choices[0] == (*i).symbol) {
                 if ((*i).leftover_vacancy > 0 && (*it).win[0] == true) {
-                    if ((*i).steal > 0) {
-						(*it).allocated = (*i).symbol;
-						(*i).leftover_vacancy--;
-                        //(*i).steal--;
-						allocated.push_back(*it);
-                    }
+                    if ((*i).steal > 0)
+                        (*i).steal--;
+					(*it).allocated = (*i).symbol;
+					(*i).leftover_vacancy--;
+					allocated.push_back(*it);
                     break;
                 } else if((*i).leftover_vacancy > 0 && (*it).win[0] == false) {
                     noWin.push_back(*it); 
