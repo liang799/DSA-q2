@@ -10,12 +10,25 @@ using namespace std;
 
 void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports)
 {
+    unsigned int choice = round;
+    if (round == 1 || round == 2)
+        choice = 1;
+
     cout << "\n Round "<< round <<" Output " << endl;
     cout << "================== " << endl;
-    vector<SpStudent>::iterator itr;
-    for (vector<SpStudent>::iterator it = allocated.begin(); it != allocated.end(); it++)
-		cout << (*it).name << " = " << (*it).allocated << endl;
+
+	for (vector<SpStudent>::iterator it = allocated.begin(); it != allocated.end(); it++) {
+		for (vector<Sport>::iterator itr = sports.begin(); itr != sports.end(); itr++) {
+            if ((*it).allocated == (*itr).symbol) {
+				cout << (*itr).name << endl;
+				cout << (*it).name << " " << (*it).gpa << " " << "choice " << choice << endl;
+				cout << "Stolen vaccancies: " << (*itr).steal << endl;
+                break;
+            }
+        }
+    }
 	cout << "================== " << endl;
+
 	cout << " Leftover Vacancy " << endl;
 	for (vector<Sport>::iterator i = sports.begin(); i != sports.end(); i++)
 		cout << (*i).leftover_vacancy << endl;
@@ -40,7 +53,7 @@ int main()
         vac = line.back(); //get vacancy
 
         if (line.back() > 'A' && line.back() < 'Z') {
-            special = letter;
+            special = vac;
         } else {
             actvac = vac - '0'; //convert vacancy from char to int, the ASCII values of the characters are subtracted from each other
 
@@ -97,9 +110,12 @@ int main()
             // Prioritize students with winning record
             if ((*it).choices[0] == (*i).symbol) {
                 if ((*i).leftover_vacancy > 0 && (*it).win[0] == true) {
-                    (*it).allocated = (*i).symbol;
-                    (*i).leftover_vacancy--;
-                    allocated.push_back(*it);
+                    if ((*i).steal > 0) {
+						(*it).allocated = (*i).symbol;
+						(*i).leftover_vacancy--;
+                        //(*i).steal--;
+						allocated.push_back(*it);
+                    }
                     break;
                 } else if((*i).leftover_vacancy > 0 && (*it).win[0] == false) {
                     noWin.push_back(*it); 
