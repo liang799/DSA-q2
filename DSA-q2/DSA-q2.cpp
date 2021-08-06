@@ -32,7 +32,7 @@ int main()
     Sport asport;
     char special;
 
-    // Read vacancy file
+    /*--------------------------------- Reading files ---------------------------------*/
     while (!read.eof()) {
         getline(read, line); //copy read to line
 		line.erase( remove(line.begin(),line.end(),' '), line.end() ); //stripping whitespace, oh yea, but has nothing to do with strippers
