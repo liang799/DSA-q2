@@ -116,11 +116,11 @@ int main()
             // Prioritize students with winning record
             if ((*it).choices[0] == (*i).symbol) {
                 if ((*i).leftover_vacancy > 0 && (*it).win[0] == true) {
-                    if ((*i).steal > 0) {
-                        cout << (*i).steal << endl;
-                        (*i).steal = (*i).steal - 1;
-                        
-                    }
+                    if ((*i).steal > 0)
+                        (*i).steal--;
+                    if ((*i).steal == 0)
+                        (*i).steal = -1;
+
 					(*it).allocated = (*i).symbol;
 					(*i).leftover_vacancy--;
 					allocated.push_back(*it);

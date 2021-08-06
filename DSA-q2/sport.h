@@ -8,5 +8,5 @@ public:
     char symbol;
     int vacancy;
     int leftover_vacancy; //intially same as vacancy
-    unsigned int steal = 0;
+    int steal = 0;
 };
