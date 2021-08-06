@@ -182,7 +182,7 @@ int main()
             }
         }
     }
-    printResults(1, allocated, sports);
+    printResults(2, allocated, sports);
     return 0;
 }
 
