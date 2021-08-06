@@ -82,7 +82,7 @@ int main()
     }
     read.close();
 
-    /* -------------------Round 1 ----------------------------------*/
+    /*--------------------------------- Round 1 ---------------------------------*/
     vector<SpStudent>::iterator it;
     vector<Sport>::iterator i;
     vector<SpStudent> noWin; //students who do not have a winning record
@@ -134,7 +134,7 @@ int main()
 
     printResults(1, allocated, sports);
     
-    /* --------------Round 2---------------------------------*/
+    /*--------------------------------- Round 2 ---------------------------------*/
     while (it != stud.end())
     {
         i = sports.begin();
