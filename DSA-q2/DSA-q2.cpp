@@ -95,18 +95,20 @@ int main()
                 (*i).steal = 3;
 
             // Prioritize students with winning record
-            if ((*it).choices[0] == (*i).symbol && (*i).leftover_vacancy > 0) {
-                if ((*it).win[0] == true) {
+            if ((*it).choices[0] == (*i).symbol) {
+                if ((*i).leftover_vacancy > 0 && (*it).win[0] == true) {
                     (*it).allocated = (*i).symbol;
                     (*i).leftover_vacancy--;
                     allocated.push_back(*it);
                     break;
-                } else {
+                } else if((*i).leftover_vacancy > 0 && (*it).win[0] == false) {
                     noWin.push_back(*it); 
                     break;
+                } else {
+                    noAllocated.push_back(*it);
+                    break;
                 }
-            } else 
-				noAllocated.push_back(*it); 
+            } 
         }
     }
 
@@ -116,14 +118,16 @@ int main()
     for (vector<SpStudent>::iterator itr = noWin.begin(); itr != noWin.end(); itr++) {
         for (i = sports.begin(); i != sports.end(); i++) {
             // Prioritize students with higher gpa 
-            if ((*itr).choices[0] == (*i).symbol && (*i).leftover_vacancy > 0 ) {
-				(*itr).allocated = (*i).symbol;
-				(*i).leftover_vacancy--;
-                allocated.push_back(*itr);
-                break;
-            } else {
-                noAllocated.push_back(*itr);
-                break;
+            if ((*itr).choices[0] == (*i).symbol ) {
+                if ((*i).leftover_vacancy > 0) {
+					(*itr).allocated = (*i).symbol;
+					(*i).leftover_vacancy--;
+				   allocated.push_back(*itr);
+					break;
+                } else {
+					noAllocated.push_back(*itr);
+					break;
+                }
             }
         }
     }
