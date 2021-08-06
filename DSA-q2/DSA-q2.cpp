@@ -8,15 +8,13 @@ using namespace std;
 #include "sport.h"
 #include "SpStudent.h"
 
-void printResults(int round, vector<SpStudent> winners, vector<SpStudent> nowin, vector<Sport> sports)
+void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports)
 {
     cout << "\n Round "<< round <<" Output " << endl;
     cout << "================== " << endl;
     vector<SpStudent>::iterator itr;
-    for (vector<SpStudent>::iterator it = winners.begin(); it != winners.end(); it++)
+    for (vector<SpStudent>::iterator it = allocated.begin(); it != allocated.end(); it++)
 		cout << (*it).name << " = " << (*it).allocated << endl;
-	for (vector<SpStudent>::iterator itr = nowin.begin(); itr != nowin.end(); itr++)
-		cout << (*itr).name << " = " << (*itr).allocated << endl;
 	cout << "================== " << endl;
 	cout << " Leftover Vacancy " << endl;
 	for (vector<Sport>::iterator i = sports.begin(); i != sports.end(); i++)
@@ -27,7 +25,6 @@ int main()
 {
     ifstream read("vac.txt");
     string line; //to hold one row of string from vac file
-    //string name;
 
     char letter, vac;
     int actvac = 0;
@@ -35,21 +32,19 @@ int main()
     Sport asport;
     char special;
 
-    //read vacancy file
+    // Read vacancy file
     while (!read.eof()) {
-        getline(read, line); //Copy read to line
+        getline(read, line); //copy read to line
+		line.erase( remove(line.begin(),line.end(),' '), line.end() ); //stripping whitespace, oh yea, but has nothing to do with strippers
+        letter = line.front(); //get symbol
+        vac = line.back(); //get vacancy
 
-        //int find = line.find( "(" ); // I suggest we remove this line as special don't have "("
-        //name = line.substr(0, find); //Find the name of the sport and assign to string variable name
-
-        letter = line.front(); //Get symbol
-        vac = line.back(); //Get vacancy
         if (line.back() > 'A' && line.back() < 'Z') {
             special = letter;
         } else {
-            actvac = vac - '0'; //Convert vacancy from char to int, the ASCII values of the characters are subtracted from each other
+            actvac = vac - '0'; //convert vacancy from char to int, the ASCII values of the characters are subtracted from each other
 
-            //asport.name = name;
+			asport.name = line.substr(0, line.find( "(" )); //find the name of the sport and assign to string variable name
             asport.symbol = letter;
             asport.vacancy = actvac;
             asport.leftover_vacancy = actvac;
@@ -60,88 +55,96 @@ int main()
     read.close();
 
     read.open("student.txt");
-    unsigned int lineNum = 1;
     SpStudent aStudent;
     vector<SpStudent> stud;
 
     while (!read.eof()) {
+        // Read aStudent name
         getline(read, aStudent.name);
-        read >> aStudent.gpa;
-        getline(read, line); // getline is needed to remove the line
-        read >> aStudent.choices[0] >> aStudent.choices[1] >> aStudent.choices[2];
+
+        // Read gpa
         getline(read, line);
-        read >> aStudent.win[0] >> aStudent.win[1] >> aStudent.win[2];
+        aStudent.gpa = stod(line); //string to double
+
+        // Read choices
         getline(read, line);
-        stud.push_back(aStudent);
+		line.erase( remove(line.begin(),line.end(),' '), line.end() ); //strip whitespace
+        for (int i = 0; i != 3; ++i)
+            aStudent.choices[i] = line[i];
+
+        // Read winning record(s)
+        getline(read, line);
+		line.erase( remove(line.begin(),line.end(),' '), line.end() ); //strip whitespace
+        for (int i = 0; i != 3; ++i) 
+            aStudent.win[i] = line[i] - '0'; //convert char to int then assign
+
+        stud.push_back(aStudent); //push object to vector
     }
     read.close();
 
     /* -------------------Round 1 ----------------------------------*/
     vector<SpStudent>::iterator it;
     vector<Sport>::iterator i;
-    vector<SpStudent> noWinning; // first choice but no winning record
+    vector<SpStudent> noWin; //students who do not have a winning record
+    vector<SpStudent> noAllocated; //students who are not allocated
     for (it = stud.begin(); it != stud.end(); it++) {
         i = sports.begin();
 
         for (i = sports.begin(); i != sports.end(); i++){
-            //find the sport that is special set the steal attempts
+            // Find the sport that is special set the steal attempts
             if ((*i).symbol == special)
                 (*i).steal = 3;
 
-            //prioritize students with winning record
+            // Prioritize students with winning record
             if ((*it).choices[0] == (*i).symbol && (*i).leftover_vacancy > 0) {
                 if ((*it).win[0] == true) {
                     (*it).allocated = (*i).symbol;
                     (*i).leftover_vacancy--;
                     break;
                 } else {
-                    noWinning.push_back(*it); //add to vector
+                    noWin.push_back(*it); 
                     break;
                 }
-            }
+            } else 
+				noAllocated.push_back(*it); 
         }
     }
 
-    // removing all the non winners
-    vector<SpStudent> winner = stud;   // first choice with winning
+    // Removing all the non winners
+    vector<SpStudent> allocated = stud;   //students who are allocated a sport
     int tmp;
     for (it = stud.begin(), tmp = 0; it != stud.end(); it++, tmp++) {
         i = sports.begin();
         for (i = sports.begin(); i != sports.end(); i++) {
             if ( (*it).win[0] == 0 ) {
-                winner.erase(winner.begin() + tmp);
-                tmp--; // need to decrement as the size of winner got smaller by 1
+                allocated.erase(allocated.begin() + tmp);
+                tmp--; //need to decrement as the size of allocated got smaller by 1
                 break;
             } else
                 break;
         }
     }
 
-    // vector of people with first choice, but no winning record
-    // gpa and sports choice are all over the place.
-    // sort according to gpa. the higher gpa go first, get choice
-    // https://stackoverflow.com/questions/12787165/sort-vector-of-class-in-c
-	sort(noWinning.begin(), noWinning.end(), SpStudent::compareGPA);
-
-    // check results
-    //for (vector<SpStudent>::iterator it = noWinning.begin(); it != noWinning.end(); it++)
-        //cout << (*it).name << ", " << (*it).gpa << endl;
+    // Sort according to higher gpa
+	sort(noWin.begin(), noWin.end(), SpStudent::compareGPA);
 
 	i = sports.begin();
-    for (vector<SpStudent>::iterator itr = noWinning.begin(); itr != noWinning.end(); itr++) {
-        i = sports.begin();
-        while (i != sports.end()) {
-            //prioritize students with winning record
+    for (vector<SpStudent>::iterator itr = noWin.begin(); itr != noWin.end(); itr++) {
+        for (i = sports.begin(); i != sports.end(); i++) {
+            // Prioritize students with higher gpa 
             if ((*itr).choices[0] == (*i).symbol && (*i).leftover_vacancy > 0 ) {
 				(*itr).allocated = (*i).symbol;
 				(*i).leftover_vacancy--;
+                allocated.push_back(*itr);
                 break;
-            } else
-                i++;
+            } else {
+                noAllocated.push_back(*itr);
+                break;
+            }
         }
     }
 
-    printResults(1, winner, noWinning, sports);
+    printResults(1, allocated, sports);
     
     /* --------------Round 2---------------------------------*/
     while (it != stud.end())
