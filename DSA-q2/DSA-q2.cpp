@@ -110,15 +110,17 @@ int main()
     for (it = stud.begin(); it != stud.end(); it++) {
         for (i = sports.begin(); i != sports.end(); i++){
             // Find the sport that is special set the steal attempts
-            if ((*i).symbol == special && (*i).steal == 0)
-                (*i).steal = 3; 
+            if ((*i).symbol == special && (*i).steal == 0) {
+                
+                (*i).steal = 3;
+            }
 
             // Prioritize students with winning record
             if ((*it).choices[0] == (*i).symbol) {
                 if ((*i).leftover_vacancy > 0 && (*it).win[0] == true) {
-                    if ((*i).steal > 0)
+                    if ((*i).symbol == special && (*i).steal > 0)
                         (*i).steal--;
-                    if ((*i).steal == 0)
+                    if ((*i).symbol == special && (*i).steal == 0)
                         (*i).steal = -1;
 
 					(*it).allocated = (*i).symbol;
@@ -159,42 +161,28 @@ int main()
     printResults(1, allocated, sports);
     
     /*--------------------------------- Round 2 ---------------------------------*/
-    while (it != stud.end())
-    {
-        i = sports.begin();
-
-        for (int x = 0; x < 3;) // Check all 3 sports competition
-        {
-            if ((*it).win[x] == 1) // Check if choices 1-3 is 1
-            {
-                while (i != sports.end())
-                {
-
-                    if ((*i).symbol == (*it).choices[x] && (*i).leftover_vacancy > 0) // To find the location of *i.symbol so that can decrement *i.leftover_vacancy
-                    {
-
-                        (*it).allocated = (*it).choices[x]; // Allocate new sport.
-                        (*i).leftover_vacancy--; //Decrement new sport. Idk how to increment the old sport as need to find the location.
+    for (it = stud.begin(); it != stud.end(); it++) {
+        for (i = sports.begin(); i != sports.end(); i++) {
+            
+            // Check if special able to steal students and if special have vacancy
+            if ((*i).symbol==special && (*i).steal>0 && (*i).vacancy>0) {
+              
+                for (int x = 0; x < 3;x++) { //Check all choices of each student 
+                    if ((*it).choices[x]==special && (*it).win[x]==true) { //Check if choices have special and win record
+                        (*it).allocated = special;
+                       cout<<"gay"<<endl;
+                        (*i).leftover_vacancy--;
+                        (*i).steal--;
+                        allocated.push_back(*it);
                         break;
                     }
-                    else
-                        i++;
-
+                    
+                    
                 }
-               
-                break; 
             }
-            else
-                x++;
-
-
-
         }
-
-
-        it++;
     }
-
+    printResults(1, allocated, sports);
     return 0;
 }
 

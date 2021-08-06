@@ -1,16 +1,12 @@
 Alex kong
 3.8
-G D R
+R G R
 1 1 0
 Asharf
 4.0
-G T R
-1 0 0
+S G R
+1 1 0
 Toeh Sam
 2.1
-G C G
-1 1 0
-Yi Quan
-4.0
-G T G
-1 0 0
+R G C
+1 1 1
