@@ -18,10 +18,13 @@
     <ClCompile Include="DSA-q2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sport.cpp">
+    <ClCompile Include="Sport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SpStudent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="printResults.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -37,7 +40,10 @@
     <ClInclude Include="SpStudent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sport.h">
+    <ClInclude Include="Sport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="printResults.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
