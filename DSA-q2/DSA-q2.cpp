@@ -22,7 +22,7 @@ void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports)
             if ((*it).allocated == (*itr).symbol) {
 				cout << (*itr).name << endl;
 				cout << (*it).name << " " << (*it).gpa << " " << "choice " << choice << endl;
-				cout << "Stolen vaccancies: " << (*itr).steal << endl;
+				
                 break;
             }
         }
@@ -30,8 +30,14 @@ void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports)
 	cout << "================== " << endl;
 
 	cout << " Leftover Vacancy " << endl;
-	for (vector<Sport>::iterator i = sports.begin(); i != sports.end(); i++)
-		cout << (*i).leftover_vacancy << endl;
+    for (vector<Sport>::iterator i = sports.begin(); i != sports.end(); i++) 
+        cout << (*i).leftover_vacancy << endl;
+    cout << "======================================" << endl;
+    cout << "Stolen Sport" << endl;
+    for (vector<Sport>::iterator i = sports.begin(); i != sports.end(); i++) 
+        cout << (*i).steal << endl;
+        
+    
 }
 
 int main()
@@ -104,14 +110,17 @@ int main()
     for (it = stud.begin(); it != stud.end(); it++) {
         for (i = sports.begin(); i != sports.end(); i++){
             // Find the sport that is special set the steal attempts
-            if ((*i).symbol == special)
-                (*i).steal = 3;
+            if ((*i).symbol == special && (*i).steal == 0)
+                (*i).steal = 3; 
 
             // Prioritize students with winning record
             if ((*it).choices[0] == (*i).symbol) {
                 if ((*i).leftover_vacancy > 0 && (*it).win[0] == true) {
-                    if ((*i).steal > 0)
-                        (*i).steal--;
+                    if ((*i).steal > 0) {
+                        cout << (*i).steal << endl;
+                        (*i).steal = (*i).steal - 1;
+                        
+                    }
 					(*it).allocated = (*i).symbol;
 					(*i).leftover_vacancy--;
 					allocated.push_back(*it);
