@@ -70,7 +70,6 @@ int main()
     /*--------------------------------- Round 1 ---------------------------------*/
     vector<SpStudent>::iterator it;
     vector<Sport>::iterator i;
-    vector<Sport>::iterator fin=sports.begin();
     vector<SpStudent> noWin; //students who do not have a winning record
     vector<SpStudent> allocated;   //students who are allocated a sport
     vector<SpStudent> noAllocated; //students who are not allocated
@@ -126,24 +125,24 @@ int main()
     printResults(1, allocated, sports);
     
     /*--------------------------------- Round 2 ---------------------------------*/
-    cout << "# Round 2" << endl;
+    // Iterators i & it are declared in Round 1
+    vector<Sport>::iterator fin;
+    cout << "\n# Round 2" << endl;
     cout << "============================= " << endl;
     for (it = allocated.begin(); it != allocated.end(); it++) { 
         for (i = sports.begin(); i != sports.end(); i++) {
             
             // Check if special able to steal students and if special have vacancy
-            if ((*i).symbol==special && (*i).steal>-1 && (*i).vacancy>0) {
-              
-                for (int x = 0; x < 3;x++) { //Check all choices of each student 
+            if ((*i).symbol==special && (*i).steal>0 && (*i).vacancy>0) {
+                for (int x = 1; x < 3; x++) { //Check all choices of each student 
                     if ((*it).choices[x]==special && (*it).win[x]==true) { //Check if choices have special and win record
                         for (fin = sports.begin(); (*it).allocated != (*fin).symbol && fin !=sports.end(); fin++) { //Find allocated sport location to increment back 
                             cout << (*it).name << " " << (*it).gpa << " stolen from " << (*fin).name << " to " << (*i).name << endl;
+                            (*it).stolen = 1;
 							(*fin).leftover_vacancy++;
 							(*it).allocated = special;
-                            (*it).stolen = 1;
 							(*i).leftover_vacancy--;
 							(*i).steal--;
-							   
 							break;
                         }
                     }
