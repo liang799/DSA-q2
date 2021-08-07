@@ -2,7 +2,7 @@
 DSA project submit by **9 Aug 2021** for free **10 marks!**
 
 ## Useful Links:
-* [Presentation Slides](https://docs.google.com/presentation/d/1VJAfc5MLgw_9Da2TqtMTnclgfCCYI-qh6GI19ojEuoU/edit#slide=id.p)
+* [Presentation Slides](https://ichatspedu-my.sharepoint.com/:p:/g/personal/neohtp_20_ichat_sp_edu_sg/ERxy5X8BlaNFm6JUTOZMQcoBGm1sMHXnMUMQ1-vQ5WsKSA?e=p3kW0k)
 * [Group Report](https://docs.google.com/document/d/1nf_r0gE0NYXF8mCVTurptTGGjxzFqCf8iK9oEva5cBY/edit?usp=sharing)
 
 ## TODO List:
