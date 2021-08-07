@@ -69,7 +69,6 @@ int main()
 
     /*--------------------------------- Round 1 ---------------------------------*/
     vector<SpStudent>::iterator it;
-    vector<SpStudent>::iterator find=stud.begin();
     vector<Sport>::iterator i;
     vector<Sport>::iterator fin=sports.begin();
     vector<SpStudent> noWin; //students who do not have a winning record
@@ -127,6 +126,8 @@ int main()
     printResults(1, allocated, sports);
     
     /*--------------------------------- Round 2 ---------------------------------*/
+    cout << "# Round 2" << endl;
+    cout << "============================= " << endl;
     for (it = allocated.begin(); it != allocated.end(); it++) { 
         for (i = sports.begin(); i != sports.end(); i++) {
             
@@ -135,16 +136,16 @@ int main()
               
                 for (int x = 0; x < 3;x++) { //Check all choices of each student 
                     if ((*it).choices[x]==special && (*it).win[x]==true) { //Check if choices have special and win record
-                        for (fin = sports.begin(); (*it).allocated != (*fin).symbol && fin !=sports.end(); ) { //Find allocated sport location to increment back 
-                            fin++;
+                        for (fin = sports.begin(); (*it).allocated != (*fin).symbol && fin !=sports.end(); fin++) { //Find allocated sport location to increment back 
+                            cout << (*it).name << " " << (*it).gpa << " stolen from " << (*fin).name << " to " << (*i).name << endl;
+							(*fin).leftover_vacancy++;
+							(*it).allocated = special;
+                            (*it).stolen = 1;
+							(*i).leftover_vacancy--;
+							(*i).steal--;
+							   
+							break;
                         }
-                        (*fin).leftover_vacancy++;
-
-						(*it).allocated = special;
-						(*i).leftover_vacancy--;
-						(*i).steal--;
-                           
-						break;
                     }
                 }
             }
