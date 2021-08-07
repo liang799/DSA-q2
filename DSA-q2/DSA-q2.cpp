@@ -127,7 +127,7 @@ int main()
     printResults(1, allocated, sports);
     
     /*--------------------------------- Round 2 ---------------------------------*/
-    for (it = stud.begin(); it != stud.end(); it++) { //IMPORTANT: pleaase use allocated vector instead of stud
+    for (it = allocated.begin(); it != allocated.end(); it++) { //IMPORTANT: pleaase use allocated vector instead of stud
         for (i = sports.begin(); i != sports.end(); i++) {
             
             // Check if special able to steal students and if special have vacancy
@@ -145,7 +145,7 @@ int main()
                             (*it).allocated = special;
                             (*i).leftover_vacancy--;
                             (*i).steal--;
-                            allocated.push_back(*it);
+                           
                             break;
                         
                     }
