@@ -8,5 +8,5 @@ S G R
 1 1 0
 Toeh Sam
 2.1
-R G C
+R C G
 1 1 1
