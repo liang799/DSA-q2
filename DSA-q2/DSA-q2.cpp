@@ -127,30 +127,25 @@ int main()
     printResults(1, allocated, sports);
     
     /*--------------------------------- Round 2 ---------------------------------*/
-    for (it = allocated.begin(); it != allocated.end(); it++) { //IMPORTANT: pleaase use allocated vector instead of stud
+    for (it = allocated.begin(); it != allocated.end(); it++) { 
         for (i = sports.begin(); i != sports.end(); i++) {
             
             // Check if special able to steal students and if special have vacancy
-            if ((*i).symbol==special && (*i).steal>0 && (*i).vacancy>0) {
+            if ((*i).symbol==special && (*i).steal>-1 && (*i).vacancy>0) {
               
                 for (int x = 0; x < 3;x++) { //Check all choices of each student 
                     if ((*it).choices[x]==special && (*it).win[x]==true) { //Check if choices have special and win record
-                        for (fin = sports.begin(); (*it).allocated != (*fin).symbol && fin !=sports.end(); ) //Find allocated sport location to increment back 
-                        {
+                        for (fin = sports.begin(); (*it).allocated != (*fin).symbol && fin !=sports.end(); ) { //Find allocated sport location to increment back 
                             fin++;
-                            cout << "gay" << endl;
                         }
                         (*fin).leftover_vacancy++;
 
-                            (*it).allocated = special;
-                            (*i).leftover_vacancy--;
-                            (*i).steal--;
+						(*it).allocated = special;
+						(*i).leftover_vacancy--;
+						(*i).steal--;
                            
-                            break;
-                        
+						break;
                     }
-                    
-                    
                 }
             }
         }
