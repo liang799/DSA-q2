@@ -69,7 +69,9 @@ int main()
 
     /*--------------------------------- Round 1 ---------------------------------*/
     vector<SpStudent>::iterator it;
+    vector<SpStudent>::iterator find=stud.begin();
     vector<Sport>::iterator i;
+    vector<Sport>::iterator fin=sports.begin();
     vector<SpStudent> noWin; //students who do not have a winning record
     vector<SpStudent> allocated;   //students who are allocated a sport
     vector<SpStudent> noAllocated; //students who are not allocated
@@ -133,12 +135,19 @@ int main()
               
                 for (int x = 0; x < 3;x++) { //Check all choices of each student 
                     if ((*it).choices[x]==special && (*it).win[x]==true) { //Check if choices have special and win record
-                        (*it).allocated = special;
-                       cout<<"gay"<<endl; //thanks for printing that, i really appreciate it.
-                        (*i).leftover_vacancy--;
-                        (*i).steal--;
-                        allocated.push_back(*it);
-                        break;
+                        for (fin = sports.begin(); (*it).allocated != (*fin).symbol && fin !=sports.end(); ) //Find allocated sport location to increment back 
+                        {
+                            fin++;
+                            cout << "gay" << endl;
+                        }
+                        (*fin).leftover_vacancy++;
+
+                            (*it).allocated = special;
+                            (*i).leftover_vacancy--;
+                            (*i).steal--;
+                            allocated.push_back(*it);
+                            break;
+                        
                     }
                     
                     
