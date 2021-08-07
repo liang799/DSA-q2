@@ -20,7 +20,6 @@ void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports)
             if ((*it).allocated == (*itr).symbol) {
 				cout << (*itr).name << endl;
                 cout << "   - " << (*it).name << " " << (*it).gpa << " " << "choice " << choice << endl;
-                break;
             }
         }
     }
