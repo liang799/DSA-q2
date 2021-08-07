@@ -21,9 +21,9 @@ void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports)
 		cout << "\n## " << (*itr).name << endl;
 		for (vector<SpStudent>::iterator it = allocated.begin(); it != allocated.end(); it++) {
             if ((*it).allocated == (*itr).symbol) {
-                cout << "  - " << (*it).name << " " << (*it).gpa << " ";
+                cout << "    - " << (*it).name << " " << (*it).gpa << " ";
                 if (round == 2 && (*it).stolen == 1)
-                    cout << "STOLEN! " << endl;
+                    cout << "STOLEN!!" << endl;
                 else
                     cout << "Choice " << choice << endl;
             }
@@ -35,9 +35,9 @@ void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports)
     cout << "======================================" << endl;
 	cout << "## Leftover Vacancy " << endl;
     for (vector<Sport>::iterator i = sports.begin(); i != sports.end(); i++)
-        cout << "  " << (*i).symbol << ": " << (*i).leftover_vacancy << endl;
+        cout << "    " << (*i).symbol << ": " << (*i).leftover_vacancy << endl;
     cout << "\n## Stolen Sport" << endl;
     for (vector<Sport>::iterator i = sports.begin(); i != sports.end(); i++) 
-        cout << "  " << (*i).symbol << ": " << (*i).steal << endl;
+        cout << "    " << (*i).symbol << ": " << (*i).steal << endl;
     cout << "======================================" << endl;
 }
