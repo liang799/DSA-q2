@@ -5,7 +5,7 @@
 #include <iostream>
 using std::vector; using std::cout; using std::endl;
 
-void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports)
+void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports, bool verbose)
 {
     unsigned int choice = round;
     if (round == 2) {
@@ -31,13 +31,15 @@ void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports)
     }
     cout << "============================= " << endl;
 
-    cout << "\n# Debugging: " << endl;
-    cout << "======================================" << endl;
-	cout << "## Leftover Vacancy " << endl;
-    for (vector<Sport>::iterator i = sports.begin(); i != sports.end(); i++)
-        cout << "    " << (*i).symbol << ": " << (*i).leftover_vacancy << endl;
-    cout << "\n## Stolen Sport" << endl;
-    for (vector<Sport>::iterator i = sports.begin(); i != sports.end(); i++) 
-        cout << "    " << (*i).symbol << ": " << (*i).steal << endl;
-    cout << "======================================" << endl;
+    if (verbose) {
+		cout << "\n# Debugging: " << endl;
+		cout << "======================================" << endl;
+		cout << "## Leftover Vacancy " << endl;
+		for (vector<Sport>::iterator i = sports.begin(); i != sports.end(); i++)
+			cout << "    " << (*i).symbol << ": " << (*i).leftover_vacancy << endl;
+		cout << "\n## Steal attempts" << endl;
+		for (vector<Sport>::iterator i = sports.begin(); i != sports.end(); i++) 
+			cout << "    " << (*i).symbol << ": " << (*i).steal << endl;
+		cout << "======================================" << endl;
+    }
 }

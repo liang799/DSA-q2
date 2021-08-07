@@ -122,7 +122,7 @@ int main()
         }
     }
 
-    printResults(1, allocated, sports);
+    printResults(1, allocated, sports, 1); //last option to toggle debugging
     
     /*--------------------------------- Round 2 ---------------------------------*/
     // Iterators i & it are declared in Round 1
@@ -150,6 +150,6 @@ int main()
             }
         }
     }
-    printResults(2, allocated, sports);
+    printResults(2, allocated, sports, 1); //last option to toggle debugging
     return 0;
 }
