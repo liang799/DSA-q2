@@ -14,7 +14,7 @@ void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports)
         cout << "--------------------------";
     } else {
 		cout << "\n # Round "<< round <<" Output " << endl;
-		cout << "============================= " << endl;
+        cout << "============================= ";
     }
 
 	for (vector<Sport>::iterator itr = sports.begin(); itr != sports.end(); itr++) {
