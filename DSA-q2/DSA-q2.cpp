@@ -73,8 +73,6 @@ int main()
     vector<SpStudent> noWin; //students who do not have a winning record
     vector<SpStudent> allocated;   //students who are allocated a sport
     vector<SpStudent> noAllocated; //students who are not allocated but have win record
-    vector<SpStudent> noAllocated2; //students who are not allocated but have win record after round 3
-    vector<SpStudent> noAllocated3; //students who are not allocated but have win record after round 4
 
 
 	// Prioritize students with winning record, if no winning record: noWin. If no vaccancy left: noAllocated
@@ -154,8 +152,12 @@ int main()
         }
     }
     /*printResults(2, allocated, sports, 1); //Last option to toggle debugging*/
-    noWin.clear();
     /*--------------------------------- Round 3 ---------------------------------*/
+    noWin.clear();
+    // Iterators i & it are declared in Round 1
+    vector<SpStudent> noAllocated2; //students who are not allocated but have win record after round 3
+    vector<SpStudent> noAllocated3; //students who are not allocated but have win record after round 4
+
     for (it = noAllocated.begin(); it != noAllocated.end(); it++) {
         for (i = sports.begin(); i != sports.end(); i++) {
             if ((*it).choices[1] == (*i).symbol) {
@@ -197,8 +199,10 @@ int main()
         }
     }
     printResults(3, allocated, sports, 1); //last option to toggle debugging
-    noWin.clear();
     /*--------------------------------- Round 4 ---------------------------------*/
+    noWin.clear();
+    // Iterators i & it are declared in Round 1
+
     for (it = noAllocated2.begin(); it != noAllocated2.end(); it++) {
         for (i = sports.begin(); i != sports.end(); i++) {
             if ((*it).choices[2] == (*i).symbol) {
