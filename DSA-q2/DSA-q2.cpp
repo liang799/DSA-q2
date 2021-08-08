@@ -138,8 +138,8 @@ int main()
                 for (int x = 1; x < 3; x++) { //Check all choices of each student 
                     if ((*it).choices[x]==special && (*it).win[x]==true) { //Check if choices have special and win record
                         for (fin = sports.begin(); (*it).allocated != (*fin).symbol && fin != sports.end(); fin++) { //Find allocated sport location to increment back 
-                            cout << (*it).name << " " << (*it).gpa << " stolen from " << (*fin).name << " to " << (*i).name << endl;
                         }
+                            cout << (*it).name << " " << (*it).gpa << " stolen from " << (*fin).name << " to " << (*i).name << endl;
                             (*it).stolen = 1;
 							(*fin).leftover_vacancy++;
 							(*it).allocated = special;
