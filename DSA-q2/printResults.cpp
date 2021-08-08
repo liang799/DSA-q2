@@ -16,8 +16,7 @@ void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports, 
         choice = round - 1;
         cout << "\n # Round " << round << " Output " << endl;
         cout << "============================= ";
-    }
-    else {
+    } else {
 		cout << "\n # Round "<< round <<" Output " << endl;
         cout << "============================= ";
     }
