@@ -13,7 +13,8 @@ int main()
 {
     ifstream read("vac.txt");
     string line; //to hold one row of string from vac file
-    char letter, vac;
+    string numVac;
+    char letter;
     int actvac = 0;
     vector<Sport> sports;
     Sport asport;
@@ -24,16 +25,15 @@ int main()
         getline(read, line); //copy read to line
 		line.erase( remove(line.begin(),line.end(),' '), line.end() ); //stripping whitespace, oh yea, but has nothing to do with strippers
         letter = line.front(); //get symbol
-        vac = line.back(); //get vacancy
+        numVac = line.substr(line.find( ":" )+1); //get vacancy
 
         if (line.back() > 'A' && line.back() < 'Z') {
-            special = vac;
+            special = numVac[0];
         } else {
-            actvac = vac - '0'; //convert vacancy from char to int, the ASCII values of the characters are subtracted from each other
 			asport.name = line.substr(0, line.find( "(" )); //find the name of the sport and assign to string variable name
+            asport.vacancy = stoi(numVac); //convert vacancy from string to int
+            asport.leftover_vacancy = asport.vacancy;
             asport.symbol = letter;
-            asport.vacancy = actvac;
-            asport.leftover_vacancy = actvac;
             sports.push_back(asport);
         }
     }
@@ -152,6 +152,7 @@ int main()
         }
     }
     /*printResults(2, allocated, sports, 1); //Last option to toggle debugging*/
+
     /*--------------------------------- Round 3 ---------------------------------*/
     noWin.clear();
     // Iterators i & it are declared in Round 1
@@ -166,13 +167,10 @@ int main()
                     (*i).leftover_vacancy--;
                     allocated.push_back(*it); //
                     break;
-                }
-                else if ((*i).leftover_vacancy > 0 && (*it).win[1] == false) {
+                } else if ((*i).leftover_vacancy > 0 && (*it).win[1] == false) {
                     noWin.push_back(*it);
                     break;
-                }
-            
-                else {
+                } else {
                     noAllocated2.push_back(*it);
                     break;
                 }
@@ -189,9 +187,7 @@ int main()
                     (*itr).allocated = (*i).symbol;
                     (*i).leftover_vacancy--;
                     allocated.push_back(*itr);
-                }
-
-                else {
+                } else {
                     noAllocated3.push_back(*it);
                 }
             }
@@ -212,11 +208,9 @@ int main()
                     allocated.push_back(*it);
                     cout << "gay" << endl;
                     break;
-                }
-                else if((*i).leftover_vacancy > 0 && (*it).win[2] == false){
+                } else if((*i).leftover_vacancy > 0 && (*it).win[2] == false){
                     noWin.push_back(*it);
-                }
-                else {
+                } else {
                     noAllocated3.push_back(*it);
                 }
                 
@@ -234,11 +228,9 @@ int main()
                     (*i).leftover_vacancy--;
                     allocated.push_back(*itr);
                     cout << "gay" << endl;
-                }
-                else{
+                } else{
                     noAllocated3.push_back(*it);
                 }
-
             }
         }
     }
