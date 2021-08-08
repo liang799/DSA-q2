@@ -96,7 +96,7 @@ int main()
 					(*i).leftover_vacancy--;
 					allocated.push_back(*it);
                     break;
-                } else if((*i).leftover_vacancy > 0 && (*it).win[0] == false) {
+                } else if((*i).leftover_vacancy > 0 && (*it).win[0] == false) { 
                     noWin.push_back(*it); 
                     break;
                 } else {
@@ -112,7 +112,7 @@ int main()
     for (vector<SpStudent>::iterator itr = noWin.begin(); itr != noWin.end(); itr++) {
         for (i = sports.begin(); i != sports.end(); i++) {
             if ((*itr).choices[0] == (*i).symbol ) {
-                if ((*i).leftover_vacancy > 0) {
+                if ((*i).leftover_vacancy > 0) { 
 					(*itr).allocated = (*i).symbol;
 					(*i).leftover_vacancy--;
 				   allocated.push_back(*itr);
@@ -183,10 +183,17 @@ int main()
     for (vector<SpStudent>::iterator itr = noWin.begin(); itr != noWin.end(); itr++) {
         for (i = sports.begin(); i != sports.end(); i++) {
             if ((*itr).choices[1] == (*i).symbol) {
+                if ((*i).leftover_vacancy > 0) {
                     (*itr).allocated = (*i).symbol;
                     (*i).leftover_vacancy--;
                     allocated.push_back(*itr);
+                }
+
+                else {
+                    noAllocated3.push_back(*it);
+                }
             }
+            
         }
     }
     printResults(3, allocated, sports, 1); //last option to toggle debugging
@@ -218,17 +225,23 @@ int main()
     for (vector<SpStudent>::iterator itr = noWin.begin(); itr != noWin.end(); itr++) {
         for (i = sports.begin(); i != sports.end(); i++) {
             if ((*itr).choices[2] == (*i).symbol) {
+                if ((*i).leftover_vacancy > 0) {
                     (*itr).allocated = (*i).symbol;
                     (*i).leftover_vacancy--;
                     allocated.push_back(*itr);
                     cout << "gay" << endl;
+                }
+                else{
+                    noAllocated3.push_back(*it);
+                }
+
             }
         }
     }
     printResults(4, allocated, sports, 1); //last option to toggle debugging
 
     /*--------------------------------- Final Round ---------------------------------*/
-    
+    //Use noAllocated3 
    
     return 0;
 }
