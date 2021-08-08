@@ -1,10 +1,10 @@
 Alex kong
 3.8
-S T R
+S G R
 1 1 0
 Asharf
 4.0
-S T R
+S G R
 1 1 0
 Toeh Sam
 2.1
