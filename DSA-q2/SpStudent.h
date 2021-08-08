@@ -13,4 +13,5 @@ struct SpStudent {
 		return (moi.gpa > rival.gpa);
     }
     bool stolen = 0;
+    bool assigned = 0;
 };

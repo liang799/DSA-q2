@@ -10,12 +10,12 @@ Shifted to [projects](https://github.com/liang799/DSA-q2/projects/1)
 
 ## Flowchart
 ### Reading Files
-![files](pictures/readFiles_v3.0.png)
+![files](pictures/readFiles_v3.1.png)
 ### Round 1
-![one](pictures/roundOne_v3.3.svg)
+![one](pictures/roundOne_v3.4.svg)
 ### Round 2
 ![two](pictures/roundTwo_v1.1.png)
 ### Round 3
-![To be implemented](pictures/roundThree_v1.1.svg)
+![To be implemented](pictures/roundThree_v1.2.svg)
 ### Round 4
 ![To be implemented]()
