@@ -122,7 +122,7 @@ int main()
         }
     }
 
-    printResults(1, allocated, sports, 1); //last option to toggle debugging
+    printResults(1, allocated, sports, 0); //last option to toggle debugging
     
     /*--------------------------------- Round 2 ---------------------------------*/
     // Iterators i & it are declared in Round 1
@@ -151,7 +151,7 @@ int main()
         }
     }
     printResults(2, allocated, sports, 1); //Last option to toggle debugging
-
+    noWin.clear();
     /*--------------------------------- Round 3 ---------------------------------*/
     for (it = noAllocated.begin(); it != noAllocated.end(); it++) {
         for (i = sports.begin(); i != sports.end(); i++) {
@@ -162,11 +162,16 @@ int main()
                     allocated.push_back(*it); //
                     break;
                 }
+                else {
+                    noWin.push_back(*it);
+                }
+
+
               
             }
         }
     }
-
+   
     // Students with no win so prioritize GPA
     for (vector<SpStudent>::iterator itr = noWin.begin(); itr != noWin.end(); itr++) {
         for (i = sports.begin(); i != sports.end(); i++) {
