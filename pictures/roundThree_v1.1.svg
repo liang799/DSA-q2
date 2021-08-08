@@ -409,8 +409,8 @@
       <path d="M1485.5927 350.2432 L1473.5927 345.2432 L1476.5927 350.2432 L1473.5927 355.2432 Z" clip-path="url(#clipPath2)" stroke="none"/>
       <path fill="none" d="M556.0898 481.2563 L1044.9733 481.2563 L1044.9733 1005.0886 L139.7105 1005.0886 L139.7105 500.7256" clip-path="url(#clipPath2)"/>
       <path d="M139.7105 492.7256 L134.7105 504.7256 L139.7105 501.7256 L144.7105 504.7256 Z" clip-path="url(#clipPath2)" stroke="none"/>
-      <path fill="none" d="M139.7105 452.7494 L139.7105 210.6807 L413.2933 210.6807" clip-path="url(#clipPath2)"/>
-      <path d="M421.2933 210.6807 L409.2933 205.6807 L412.2933 210.6807 L409.2933 215.6807 Z" clip-path="url(#clipPath2)" stroke="none"/>
+      <path fill="none" d="M139.7105 452.7139 L139.7105 352.626 L139.7105 350.2432 L415.7758 350.2432" clip-path="url(#clipPath2)"/>
+      <path d="M423.7758 350.2432 L411.7758 345.2432 L414.7758 350.2432 L411.7758 355.2432 Z" clip-path="url(#clipPath2)" stroke="none"/>
     </g>
   </g>
 </svg>
