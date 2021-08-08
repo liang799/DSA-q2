@@ -13,7 +13,8 @@ int main()
 {
     ifstream read("vac.txt");
     string line; //to hold one row of string from vac file
-    char letter, vac;
+    string numVac;
+    char letter;
     int actvac = 0;
     vector<Sport> sports;
     Sport asport;
@@ -24,16 +25,15 @@ int main()
         getline(read, line); //copy read to line
 		line.erase( remove(line.begin(),line.end(),' '), line.end() ); //stripping whitespace, oh yea, but has nothing to do with strippers
         letter = line.front(); //get symbol
-        vac = line.back(); //get vacancy
+        numVac = line.substr(line.find( ":" )+1); //get vacancy
 
         if (line.back() > 'A' && line.back() < 'Z') {
-            special = vac;
+            special = numVac[0];
         } else {
-            actvac = vac - '0'; //convert vacancy from char to int, the ASCII values of the characters are subtracted from each other
 			asport.name = line.substr(0, line.find( "(" )); //find the name of the sport and assign to string variable name
+            asport.vacancy = stoi(numVac); //convert vacancy from string to int
+            asport.leftover_vacancy = asport.vacancy;
             asport.symbol = letter;
-            asport.vacancy = actvac;
-            asport.leftover_vacancy = actvac;
             sports.push_back(asport);
         }
     }
@@ -73,8 +73,6 @@ int main()
     vector<SpStudent> noWin; //students who do not have a winning record
     vector<SpStudent> allocated;   //students who are allocated a sport
     vector<SpStudent> noAllocated; //students who are not allocated but have win record
-    vector<SpStudent> noAllocated2; //students who are not allocated but have win record after round 3
-    vector<SpStudent> noAllocated3; //students who are not allocated but have win record after round 4
 
 
 	// Prioritize students with winning record, if no winning record: noWin. If no vaccancy left: noAllocated
@@ -126,7 +124,7 @@ int main()
     }
 
     printResults(1, allocated, sports, 1); //last option to toggle debugging
-   
+    
     /*-------------------------------- - Round 2 -------------------------------- - */
     // Iterators i & it are declared in Round 1
     vector<Sport>::iterator fin;
@@ -154,8 +152,13 @@ int main()
         }
     }
     /*printResults(2, allocated, sports, 1); //Last option to toggle debugging*/
-    noWin.clear();
+
     /*--------------------------------- Round 3 ---------------------------------*/
+    noWin.clear();
+    // Iterators i & it are declared in Round 1
+    vector<SpStudent> noAllocated2; //students who are not allocated but have win record after round 3
+    vector<SpStudent> noAllocated3; //students who are not allocated but have win record after round 4
+
     for (it = noAllocated.begin(); it != noAllocated.end(); it++) {
         for (i = sports.begin(); i != sports.end(); i++) {
             if ((*it).choices[1] == (*i).symbol) {
@@ -164,13 +167,10 @@ int main()
                     (*i).leftover_vacancy--;
                     allocated.push_back(*it); //
                     break;
-                }
-                else if ((*i).leftover_vacancy > 0 && (*it).win[1] == false) {
+                } else if ((*i).leftover_vacancy > 0 && (*it).win[1] == false) {
                     noWin.push_back(*it);
                     break;
-                }
-            
-                else {
+                } else {
                     noAllocated2.push_back(*it);
                     break;
                 }
@@ -187,18 +187,18 @@ int main()
                     (*itr).allocated = (*i).symbol;
                     (*i).leftover_vacancy--;
                     allocated.push_back(*itr);
-                }
-
-                else {
-                    noAllocated3.push_back(*itr);
+                } else {
+                    noAllocated3.push_back(*it);
                 }
             }
             
         }
     }
     printResults(3, allocated, sports, 1); //last option to toggle debugging
-    noWin.clear();
     /*--------------------------------- Round 4 ---------------------------------*/
+    noWin.clear();
+    // Iterators i & it are declared in Round 1
+
     for (it = noAllocated2.begin(); it != noAllocated2.end(); it++) {
         for (i = sports.begin(); i != sports.end(); i++) {
             if ((*it).choices[2] == (*i).symbol) {
@@ -208,14 +208,12 @@ int main()
                     allocated.push_back(*it);
                     cout << "gay" << endl;
                     break;
-                }
-                else if ((*i).leftover_vacancy > 0 && (*it).win[2] == false) {
+                } else if((*i).leftover_vacancy > 0 && (*it).win[2] == false){
                     noWin.push_back(*it);
-                }
-                else {
+                } else {
                     noAllocated3.push_back(*it);
                 }
-
+                
             }
         }
     }
@@ -230,11 +228,9 @@ int main()
                     (*i).leftover_vacancy--;
                     allocated.push_back(*itr);
                     cout << "gay" << endl;
-                }
-                else {
+                } else{
                     noAllocated3.push_back(*itr);
                 }
-
             }
         }
     }
@@ -242,7 +238,7 @@ int main()
 
     /*--------------------------------- Final Round ---------------------------------*/
     //Use noAllocated3 
-
+   
     return 0;
 }
 
