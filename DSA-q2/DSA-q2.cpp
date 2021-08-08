@@ -126,7 +126,7 @@ int main()
     }
 
     printResults(1, allocated, sports, 1); //last option to toggle debugging
-    
+   
     /*-------------------------------- - Round 2 -------------------------------- - */
     // Iterators i & it are declared in Round 1
     vector<Sport>::iterator fin;
@@ -190,7 +190,7 @@ int main()
                 }
 
                 else {
-                    noAllocated3.push_back(*it);
+                    noAllocated3.push_back(*itr);
                 }
             }
             
@@ -209,13 +209,13 @@ int main()
                     cout << "gay" << endl;
                     break;
                 }
-                else if((*i).leftover_vacancy > 0 && (*it).win[2] == false){
+                else if ((*i).leftover_vacancy > 0 && (*it).win[2] == false) {
                     noWin.push_back(*it);
                 }
                 else {
                     noAllocated3.push_back(*it);
                 }
-                
+
             }
         }
     }
@@ -231,8 +231,8 @@ int main()
                     allocated.push_back(*itr);
                     cout << "gay" << endl;
                 }
-                else{
-                    noAllocated3.push_back(*it);
+                else {
+                    noAllocated3.push_back(*itr);
                 }
 
             }
@@ -242,7 +242,7 @@ int main()
 
     /*--------------------------------- Final Round ---------------------------------*/
     //Use noAllocated3 
-   
+
     return 0;
 }
 
