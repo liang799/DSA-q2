@@ -133,7 +133,7 @@ int main()
         for (i = sports.begin(); i != sports.end(); i++) {
             
             // Check if special able to steal students and if special have vacancy
-            if ((*i).symbol==special && (*i).steal>0 && (*i).vacancy>0) {
+            if ((*i).symbol==special && (*i).steal>0 && (*i).leftover_vacancy>0) {
                 for (int x = 1; x < 3; x++) { //Check all choices of each student 
                     if ((*it).choices[x]==special && (*it).win[x]==true) { //Check if choices have special and win record
                         for (fin = sports.begin(); (*it).allocated != (*fin).symbol && fin !=sports.end(); fin++) { //Find allocated sport location to increment back 
@@ -150,6 +150,40 @@ int main()
             }
         }
     }
+    printResults(2, allocated, sports, 1); //Last option to toggle debugging
+
+    /*--------------------------------- Round 3 ---------------------------------*/
+    for (it = noAllocated.begin(); it != noAllocated.end(); it++) {
+        for (i = sports.begin(); i != sports.end(); i++) {
+            if ((*it).choices[1] == (*i).symbol) {
+                if ((*i).leftover_vacancy > 0 && (*it).win[1] == false) {
+                    (*it).allocated = (*i).symbol;
+                    (*i).leftover_vacancy--;
+                    allocated.push_back(*it); //
+                    break;
+                }
+              
+            }
+        }
+    }
+
+    // Students with no win so prioritize GPA
+    for (vector<SpStudent>::iterator itr = noWin.begin(); itr != noWin.end(); itr++) {
+        for (i = sports.begin(); i != sports.end(); i++) {
+            if ((*itr).choices[1] == (*i).symbol) {
+                if ((*i).leftover_vacancy > 0) {
+                    (*itr).allocated = (*i).symbol;
+                    (*i).leftover_vacancy--;
+                     allocated.push_back(*itr);
+                   
+                }
+            }
+        }
+    }
+
+
     printResults(2, allocated, sports, 1); //last option to toggle debugging
+   
     return 0;
 }
+
