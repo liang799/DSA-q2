@@ -157,8 +157,8 @@ int main()
     /*--------------------------------- Round 3 ---------------------------------*/
     noWin.clear();
     // Iterators i & it are declared in Round 1
-    vector<SpStudent> noAllocated2; //students who are not allocated but have win record after round 3
-    vector<SpStudent> noAllocated3; //students who are not allocated but have win record after round 4
+    vector<SpStudent> noAllocated2; //students who are not allocated  after round 3
+    vector<SpStudent> noAllocated3; //students who are not allocated  after round 4
 
     for (it = noAllocated.begin(); it != noAllocated.end(); it++) {
         for (i = sports.begin(); i != sports.end(); i++) {
