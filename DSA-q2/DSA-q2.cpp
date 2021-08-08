@@ -141,10 +141,10 @@ int main()
                         }
                             cout << (*it).name << " " << (*it).gpa << " stolen from " << (*fin).name << " to " << (*i).name << endl;
                             (*it).stolen = 1;
-							(*fin).leftover_vacancy++;
+							(*fin).leftover_vacancy++; //Increment old sport
 							(*it).allocated = special;
-							(*i).leftover_vacancy--;
-							(*i).steal--;
+							(*i).leftover_vacancy--; //Decrement special
+							(*i).steal--; //Decrement no. of steal
 							break;
                         
                     }
