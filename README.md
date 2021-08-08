@@ -14,7 +14,7 @@ Shifted to [projects](https://github.com/liang799/DSA-q2/projects/1)
 ### Round 1
 ![one](pictures/roundOne_v3.3.svg)
 ### Round 2
-![two](pictures/roundTwo_v1.0.png)
+![two](pictures/roundTwo_v1.1.png)
 ### Round 3
 ![To be implemented](pictures/roundThree_v1.1.svg)
 ### Round 4
