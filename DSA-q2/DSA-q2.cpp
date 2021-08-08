@@ -141,10 +141,10 @@ int main()
                         }
                             cout << (*it).name << " " << (*it).gpa << " stolen from " << (*fin).name << " to " << (*i).name << endl;
                             (*it).stolen = 1;
-							(*fin).leftover_vacancy++;
+							(*fin).leftover_vacancy++; //Increment old sport
 							(*it).allocated = special;
-							(*i).leftover_vacancy--;
-							(*i).steal--;
+							(*i).leftover_vacancy--; //Decrement special
+							(*i).steal--; //Decrement no. of steal
 							break;
                         
                     }
@@ -157,8 +157,8 @@ int main()
     /*--------------------------------- Round 3 ---------------------------------*/
     noWin.clear();
     // Iterators i & it are declared in Round 1
-    vector<SpStudent> noAllocated2; //students who are not allocated but have win record after round 3
-    vector<SpStudent> noAllocated3; //students who are not allocated but have win record after round 4
+    vector<SpStudent> noAllocated2; //students who are not allocated  after round 3
+    vector<SpStudent> noAllocated3; //students who are not allocated  after round 4
 
     for (it = noAllocated.begin(); it != noAllocated.end(); it++) {
         for (i = sports.begin(); i != sports.end(); i++) {
@@ -189,7 +189,7 @@ int main()
                     (*i).leftover_vacancy--;
                     allocated.push_back(*itr);
                 } else {
-                    noAllocated3.push_back(*it);
+                    noAllocated2.push_back(*it);
                 }
             }
             
