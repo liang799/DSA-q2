@@ -189,7 +189,7 @@ int main()
                     (*i).leftover_vacancy--;
                     allocated.push_back(*itr);
                 } else {
-                    noAllocated3.push_back(*it);
+                    noAllocated2.push_back(*it);
                 }
             }
             
