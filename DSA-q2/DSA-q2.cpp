@@ -127,7 +127,7 @@ int main()
     
     /*-------------------------------- - Round 2 -------------------------------- - */
     // Iterators i & it are declared in Round 1
-    vector<Sport>::iterator fin;
+    vector<Sport>::iterator fin; //old iterator
     cout << "\n# Round 2" << endl;
     cout << "============================= " << endl;
     for (it = allocated.begin(); it != allocated.end(); it++) { 
