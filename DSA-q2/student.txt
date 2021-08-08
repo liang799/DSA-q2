@@ -22,7 +22,15 @@ Harish
 4.0
 C D G
 0 1 0
-Gay
+Sam
+2.0
+D R C
+0 1 0
+Tom
+2.0
+D R C
+0 1 0
+Garry
 2.0
 D R C
 0 1 0
@@ -42,16 +50,8 @@ Gay
 2.0
 D R C
 0 1 0
-Gay
-2.0
-D R C
-0 1 0
-Gay
-2.0
-D R C
-0 1 0
-Gay
-2.0
+Sammy
+4.0
 D R C
 0 1 0
 Gay

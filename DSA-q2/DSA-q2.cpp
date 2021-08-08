@@ -180,9 +180,38 @@ int main()
             }
         }
     }
+    printResults(3, allocated, sports, 1); //last option to toggle debugging
+    /*--------------------------------- Round 4 ---------------------------------
+    for (it = noAllocated.begin(); it != noAllocated.end(); it++) {
+        for (i = sports.begin(); i != sports.end(); i++) {
+            if ((*it).choices[2] == (*i).symbol) {
+                if ((*i).leftover_vacancy > 0 && (*it).win[1] == false) {
+                    (*it).allocated = (*i).symbol;
+                    (*i).leftover_vacancy--;
+                    allocated.push_back(*it); //
+                    break;
+                }
 
+            }
+        }
+    }
 
-    printResults(2, allocated, sports, 1); //last option to toggle debugging
+    // Students with no win so prioritize GPA
+    for (vector<SpStudent>::iterator itr = noWin.begin(); itr != noWin.end(); itr++) {
+        for (i = sports.begin(); i != sports.end(); i++) {
+            if ((*itr).choices[2] == (*i).symbol) {
+                if ((*i).leftover_vacancy > 0) {
+                    (*itr).allocated = (*i).symbol;
+                    (*i).leftover_vacancy--;
+                    allocated.push_back(*itr);
+
+                }
+            }
+        }
+    }
+   
+
+    /*--------------------------------- Final Round ---------------------------------*/
    
     return 0;
 }
