@@ -240,8 +240,7 @@ int main()
 
     for (it = noAllocated.begin(); it != noAllocated.end(); it++) {
         while (!(*it).assigned) {
-			i = sports.begin();
-			i = i + random_sport(generator);
+			i = sports.begin() + random_sport(generator);
 			if ((*i).leftover_vacancy > 0) {
 				(*it).allocated = (*i).symbol;
 				(*i).leftover_vacancy--;
@@ -251,6 +250,7 @@ int main()
         }
     }
     printResults(5, allocated, sports, 1);
+
     return 0;
 }
 

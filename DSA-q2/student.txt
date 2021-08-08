@@ -1,20 +1,40 @@
-Alex kong
+One
 3.8
 S G R
 1 1 0
-Asharf
+Two
 4.0
 S G R
 1 1 0
-Toeh Sam
+Three
 2.1
 S T G
 1 1 1
-Yi Quan
+Four
 1.0
 S T G
 1 1 1
-Erwin 
+Five
 4.0
 S T D
 1 0 0
+Six
+1.0
+S T D
+0 0 0
+Seven
+0.0
+S R G
+0 0 0
+Eight
+0.5
+S G R
+0 0 0
+Nine
+3.4
+S T R
+0 0 0
+Ten
+0.0
+S T R
+0 0 0
