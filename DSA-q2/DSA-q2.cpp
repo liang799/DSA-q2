@@ -229,6 +229,7 @@ int main()
                     (*itr).allocated = (*i).symbol;
                     (*i).leftover_vacancy--;
                     allocated.push_back(*itr);
+                    cout << "gay" << endl;
                 }
                 else {
                     noAllocated3.push_back(*itr);
