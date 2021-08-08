@@ -1,7 +1,7 @@
-Chess(C) : 325
-Dancing(D) : 242
+Chess(C) : 100
+Dancing(D) : 100
 Gaming(G) : 100
-Running(R) : 300
-Swimming(S) : 120
-Tennis(T): 60
+Running(R) : 100
+Swimming(S) : 100
+Tennis(T): 100
 Special: G

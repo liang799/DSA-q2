@@ -151,7 +151,7 @@ int main()
             }
         }
     }
-    /*printResults(2, allocated, sports, 1); //Last option to toggle debugging*/
+    printResults(2, allocated, sports, 1); //Last option to toggle debugging
 
     /*--------------------------------- Round 3 ---------------------------------*/
     noWin.clear();
