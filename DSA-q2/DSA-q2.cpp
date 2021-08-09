@@ -13,7 +13,7 @@ using namespace std;
 int main()
 {
     string studentFile, vacancyFile, line, numVac;
-    char special;
+    char special, verbose;
     vector<Sport> sports;
     Sport asport;
 
@@ -23,6 +23,8 @@ int main()
     cin >> vacancyFile;
     cout << "Please enter a valid student file:  ";
     cin >> studentFile;
+    cout << "Verbose? (y/n)  ";
+    cin >> verbose;
 
     ifstream read(vacancyFile);
 	if(!read){
@@ -138,7 +140,7 @@ int main()
         }
     }
 
-    printResults(1, allocated, sports, 1);
+    printResults(1, allocated, sports, verbose);
     
     /*-------------------------------- - Round 2 -------------------------------- - */
     // Iterators i & it are declared in Round 1
@@ -165,7 +167,7 @@ int main()
             }
         }
     }
-    printResults(2, allocated, sports, 1);
+    printResults(2, allocated, sports, verbose);
 
     /*--------------------------------- Round 3 ---------------------------------*/
     noWin.clear();
@@ -210,7 +212,7 @@ int main()
             }
         }
     }
-    printResults(3, allocated, sports, 1);
+    printResults(3, allocated, sports, verbose);
 
     /*--------------------------------- Round 4 ---------------------------------*/
     noWin.clear();
@@ -255,7 +257,7 @@ int main()
             }
         }
     }
-    printResults(4, allocated, sports, 1); //last option to toggle debugging
+    printResults(4, allocated, sports, verbose);
 
     /*--------------------------------- Final Round ---------------------------------*/
 	default_random_engine generator;
@@ -272,7 +274,7 @@ int main()
 			}
         }
     }
-    printResults(5, allocated, sports, 1);
+    printResults(5, allocated, sports, verbose);
 
     ofstream fout("results.csv");
     fout << "Student, GPA, Allocation, Sport" << endl;

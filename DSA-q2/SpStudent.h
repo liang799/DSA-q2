@@ -12,5 +12,4 @@ struct SpStudent {
     static bool compareGPA(const SpStudent& moi, const SpStudent& rival) {
 		return (moi.gpa > rival.gpa);
     }
-    bool stolen = 0;
 };

@@ -5,7 +5,7 @@
 #include <iostream>
 using std::vector; using std::cout; using std::endl;
 
-void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports, bool verbose)
+void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports, char verbose)
 {
     if (round == 2) {
         cout << "\nSummary " << endl;
@@ -24,7 +24,7 @@ void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports, 
     }
     cout << "============================= " << endl;
 
-    if (verbose) {
+    if (verbose == 'y') {
 		cout << "\n# Debugging: " << endl;
 		cout << "======================================" << endl;
 		cout << "## Leftover Vacancy " << endl;
