@@ -12,17 +12,16 @@ using namespace std;
 
 int main()
 {
-    string studentfile,vacancyfile, line, numVac;
-   
-    cout << "Please enter a valid vacancy file: " << endl;
-    cin >> vacancyfile;
-    cout << "Please enter a valid student file: " << endl;
-    cin >> studentfile;
-    
-    ifstream read(vacancyfile);
+    string line,numVac;
     char special;
     vector<Sport> sports;
     Sport asport;
+    ifstream read("vac.txt");
+	if(!read){
+        cerr << "ERROR: FILE NOT FOUND - Unable to read vac.txt";
+        cerr << "Please place the file in the same directory as the exectuable";
+		return -1;
+	}
 
     /*--------------------------------- Reading files ---------------------------------*/
     while (!read.eof()) {
@@ -42,7 +41,12 @@ int main()
     }
     read.close();
 
-    read.open(studentfile);
+    read.open("student.txt");
+	if(!read){
+        cerr << "ERROR: FILE NOT FOUND - Unable to read student.txt";
+        cerr << "Please place the file in the same directory as the exectuable";
+		return -1;
+	}
     SpStudent aStudent;
     vector<SpStudent> stud;
 
