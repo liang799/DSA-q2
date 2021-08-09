@@ -7,15 +7,9 @@ using std::vector; using std::cout; using std::endl;
 
 void printResults(int round, vector<SpStudent> allocated, vector<Sport> sports, bool verbose)
 {
-    unsigned int choice = round;
     if (round == 2) {
-        choice = 1;
         cout << "\nSummary " << endl;
         cout << "--------------------------";
-    } else if (round > 2) {
-        choice = round - 1;
-        cout << "\n # Round " << round << " Output " << endl;
-        cout << "============================= ";
     } else {
 		cout << "\n # Round "<< round <<" Output " << endl;
         cout << "============================= ";
