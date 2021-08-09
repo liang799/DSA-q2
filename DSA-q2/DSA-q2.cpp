@@ -41,7 +41,7 @@ int main()
         } else {
 			asport.name = line.substr(0, line.find( "(" ));
             asport.vacancy = stoi(numVac);
-            asport.leftover_vacancy = asport.vacancy;
+            asport.vacancy = asport.vacancy;
             asport.symbol = line.front();
             sports.push_back(asport);
         }
@@ -96,7 +96,7 @@ int main()
                 (*i).steal = 3;
 
             if ((*it).choices[0] == (*i).symbol) {
-                if ((*i).leftover_vacancy > 0 && (*it).win[0] == true) {
+                if ((*i).vacancy > 0 && (*it).win[0] == true) {
                     // Check if special has been assgined any students
                     if ((*i).symbol == special && (*i).steal > 0)
                         (*i).steal--;
@@ -104,10 +104,11 @@ int main()
                         (*i).steal = -1;
 
 					(*it).allocated = (*i).symbol;
-					(*i).leftover_vacancy--;
+					(*i).vacancy--;
+                    (*it).allocatedChoice = "Choice 1";
 					allocated.push_back(*it);
                     break;
-                } else if((*i).leftover_vacancy > 0 && (*it).win[0] == false) { 
+                } else if((*i).vacancy > 0 && (*it).win[0] == false) { 
                     noWin.push_back(*it); 
                     break;
                 } else {
@@ -123,9 +124,10 @@ int main()
     for (vector<SpStudent>::iterator itr = noWin.begin(); itr != noWin.end(); itr++) {
         for (i = sports.begin(); i != sports.end(); i++) {
             if ((*itr).choices[0] == (*i).symbol ) {
-                if ((*i).leftover_vacancy > 0) { 
+                if ((*i).vacancy > 0) { 
 					(*itr).allocated = (*i).symbol;
-					(*i).leftover_vacancy--;
+					(*itr).allocatedChoice = "Choice 1";
+					(*i).vacancy--;
                     allocated.push_back(*itr);
 					break;
                 } else {
@@ -147,15 +149,15 @@ int main()
         for (i = sports.begin(); i != sports.end(); i++) {
             
             // Check if special able to steal students and if special have vacancy
-            if ((*i).symbol==special && (*i).steal>0 && (*i).leftover_vacancy>0) {
+            if ((*i).symbol==special && (*i).steal>0 && (*i).vacancy>0) {
                 for (int x = 1; x < 3; x++) { //Check all choices of each student 
                     if ((*it).choices[x]==special && (*it).win[x]==true) { //Check if choices have special and win record
                         for (fin = sports.begin(); (*it).allocated != (*fin).symbol && fin != sports.end(); fin++) {} //Find allocated sport location to increment back 
 						cout << (*it).name << " " << (*it).gpa << " stolen from " << (*fin).name << " to " << (*i).name << endl;
-						(*it).stolen = 1;
-						(*fin).leftover_vacancy++; //Increment old sport
+                        (*it).allocatedChoice = "STOLEN";
+						(*fin).vacancy++; //Increment old sport
 						(*it).allocated = special;
-						(*i).leftover_vacancy--; //Decrement special
+						(*i).vacancy--; //Decrement special
 						(*i).steal--; //Decrement no. of steal
 						break;
                     }
@@ -173,12 +175,13 @@ int main()
     for (it = noAllocated.begin(); it != noAllocated.end(); it++) {
         for (i = sports.begin(); i != sports.end(); i++) {
             if ((*it).choices[1] == (*i).symbol) {
-                if ((*i).leftover_vacancy > 0 && (*it).win[1] == true) {
+                if ((*i).vacancy > 0 && (*it).win[1] == true) {
                     (*it).allocated = (*i).symbol;
-                    (*i).leftover_vacancy--;
+					(*it).allocatedChoice = "Choice 2";
+                    (*i).vacancy--;
                     allocated.push_back(*it);
                     break;
-                } else if ((*i).leftover_vacancy > 0 && (*it).win[1] == false) {
+                } else if ((*i).vacancy > 0 && (*it).win[1] == false) {
                     noWin.push_back(*it);
                     break;
                 } else {
@@ -194,9 +197,10 @@ int main()
     for (vector<SpStudent>::iterator itr = noWin.begin(); itr != noWin.end(); itr++) {
         for (i = sports.begin(); i != sports.end(); i++) {
             if ((*itr).choices[1] == (*i).symbol) {
-                if ((*i).leftover_vacancy > 0) {
+                if ((*i).vacancy > 0) {
                     (*itr).allocated = (*i).symbol;
-                    (*i).leftover_vacancy--;
+					(*itr).allocatedChoice = "Choice 2";
+                    (*i).vacancy--;
                     allocated.push_back(*itr);
                     break;
                 } else {
@@ -216,12 +220,13 @@ int main()
     for (it = noAllocated2.begin(); it != noAllocated2.end(); it++) {
         for (i = sports.begin(); i != sports.end(); i++) {
             if ((*it).choices[2] == (*i).symbol) {
-                if ((*i).leftover_vacancy > 0 && (*it).win[2] == true) {
+                if ((*i).vacancy > 0 && (*it).win[2] == true) {
                     (*it).allocated = (*i).symbol;
-                    (*i).leftover_vacancy--;
+					(*it).allocatedChoice = "Choice 3";
+                    (*i).vacancy--;
                     allocated.push_back(*it);
                     break;
-                } else if((*i).leftover_vacancy > 0 && (*it).win[2] == false){
+                } else if((*i).vacancy > 0 && (*it).win[2] == false){
                     noWin.push_back(*it);
                     break;
                 } else {
@@ -237,9 +242,10 @@ int main()
     for (vector<SpStudent>::iterator itr = noWin.begin(); itr != noWin.end(); itr++) {
         for (i = sports.begin(); i != sports.end(); i++) {
             if ((*itr).choices[2] == (*i).symbol) {
-                if ((*i).leftover_vacancy > 0) {
+                if ((*i).vacancy > 0) {
                     (*itr).allocated = (*i).symbol;
-                    (*i).leftover_vacancy--;
+					(*itr).allocatedChoice = "Choice 3";
+                    (*i).vacancy--;
                     allocated.push_back(*itr);
                     break;
                 } else{
@@ -256,12 +262,12 @@ int main()
     uniform_int_distribution<int> random_sport(0, sports.size()-1);
 
     for (it = noAllocated.begin(); it != noAllocated.end(); it++) {
-        while (!(*it).assigned) {
+        while ((*it).allocatedChoice == "Not allocated") {
 			i = sports.begin() + random_sport(generator);
-			if ((*i).leftover_vacancy > 0) {
+			if ((*i).vacancy > 0) {
 				(*it).allocated = (*i).symbol;
-				(*i).leftover_vacancy--;
-                (*it).assigned = 1;
+				(*i).vacancy--;
+                (*it).allocatedChoice = "Random";
 				allocated.push_back(*it);
 			}
         }
@@ -269,7 +275,7 @@ int main()
     printResults(5, allocated, sports, 1);
 
     ofstream fout("results.csv");
-    fout << "Student, GPA, Choice, Sport" << endl;
+    fout << "Student, GPA, Allocation, Sport" << endl;
 	for (vector<SpStudent>::iterator it = allocated.begin(); it != allocated.end(); it++)
         fout << (*it).name << ", " << (*it).gpa << ", " << (*it).allocatedChoice << ", " << (*it).allocated << endl;
     fout.close();
@@ -279,4 +285,3 @@ int main()
 
     return 0;
 }
-

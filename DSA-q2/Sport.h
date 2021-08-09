@@ -7,6 +7,5 @@ public:
     string name;     
     char symbol;
     int vacancy;
-    int leftover_vacancy; //intially same as vacancy
     int steal = 0;
 };

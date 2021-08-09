@@ -1,11 +1,11 @@
-Student, GPA, Choice, Sport
-One, 3.8, 999, G
-Two, 4, 999, G
-Three, 2.1, 999, T
-Four, 1, 999, T
-Seven, 0, 999, R
-Five, 4, 999, D
-Nine, 3.4, 999, R
-Six, 1, 999, D
-Eight, 0.5, 999, C
-Ten, 0, 999, S
+Student, GPA, Allocation, Sport
+One, 3.8, STOLEN, G
+Two, 4, STOLEN, G
+Three, 2.1, Choice 2, T
+Four, 1, Choice 2, T
+Seven, 0, Choice 2, R
+Five, 4, Choice 3, D
+Nine, 3.4, Choice 3, R
+Six, 1, Choice 3, D
+Eight, 0.5, Random, C
+Ten, 0, Random, S
