@@ -12,8 +12,14 @@ using namespace std;
 
 int main()
 {
-    ifstream read("vac.txt");
-    string line, numVac;
+    string studentfile,vacancyfile, line, numVac;
+   
+    cout << "Please enter a valid vacancy file: " << endl;
+    cin >> vacancyfile;
+    cout << "Please enter a valid student file: " << endl;
+    cin >> studentfile;
+    
+    ifstream read(vacancyfile);
     char special;
     vector<Sport> sports;
     Sport asport;
@@ -36,7 +42,7 @@ int main()
     }
     read.close();
 
-    read.open("student.txt");
+    read.open(studentfile);
     SpStudent aStudent;
     vector<SpStudent> stud;
 
