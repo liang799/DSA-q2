@@ -12,7 +12,7 @@ using namespace std;
 
 int main()
 {
-    string studentfile, vacancyfile, line, numVac;
+    string studentFile, vacancyFile, line, numVac;
     char special;
     vector<Sport> sports;
     Sport asport;
@@ -20,17 +20,16 @@ int main()
     cout << "Reading files" << endl;
     cout << "---------------" << endl;
     cout << "Please enter a valid vacancy file:  ";
-    cin >> vacancyfile;
+    cin >> vacancyFile;
     cout << "Please enter a valid student file:  ";
-    cin >> studentfile;
+    cin >> studentFile;
 
-    ifstream read(vacancyfile);
+    ifstream read(vacancyFile);
 	if(!read){
-        cerr << "\nERROR: FILE NOT FOUND - Unable to read " << vacancyfile;
+        cerr << "\nERROR: FILE NOT FOUND - Unable to read " << vacancyFile;
         cerr << "\nPlease place the file in the same directory as the exectuable.\n\n";
 		return -1;
 	}
-
     /*--------------------------------- Reading files ---------------------------------*/
     while (!read.eof()) {
         getline(read, line);
@@ -49,9 +48,9 @@ int main()
     }
     read.close();
 
-    read.open(studentfile);
+    read.open(studentFile);
 	if(!read){
-        cerr << "ERROR: FILE NOT FOUND - Unable to read " << studentfile;
+        cerr << "ERROR: FILE NOT FOUND - Unable to read " << studentFile;
         cerr << "\nPlease place the file in the same directory as the exectuable.\n\n";
 		return -1;
 	}
@@ -268,6 +267,15 @@ int main()
         }
     }
     printResults(5, allocated, sports, 1);
+
+    ofstream fout("results.csv");
+    fout << "Student, GPA, Choice, Sport" << endl;
+	for (vector<SpStudent>::iterator it = allocated.begin(); it != allocated.end(); it++)
+        fout << (*it).name << ", " << (*it).gpa << ", " << (*it).allocatedChoice << ", " << (*it).allocated << endl;
+    fout.close();
+    
+    cout << "\nNOTE: " << endl;
+    cout << "Results outputed to results.csv" << endl;
 
     return 0;
 }
