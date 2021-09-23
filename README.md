@@ -14,6 +14,11 @@ need to compare, students with higher GPA will have higher priority.
 - Finally, if there are still outstanding students, the program will allocate sport program to 
 students randomly, regardless of the student’s choices. 
 
+## Additional features that we added
+- [x] Toggle b/w verbose and non-verbose
+- [x] Ask user to specify name of text file
+- [x] Output data to a new text file called results.csv
+
 ## Flowchart
 ### Reading Files
 ![files](pictures/readFiles_v3.1.jpg)
