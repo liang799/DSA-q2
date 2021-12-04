@@ -1,4 +1,8 @@
 # DSA-q2
+
+## Team Members
+Harith and me
+
 ## Rules for the program
 - In Round 1, students are posted to their 1st choice whenever possible. 
 - However, every year, EEE allows 1 sport program to make special request to recruit up to 3 
