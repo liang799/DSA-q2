@@ -1,7 +1,8 @@
 # DSA-q2
 
 ## Team Members
-Harith and me
+* [Harith](https://github.com/Dryices)
+* [Me](https://github.com/liang799/)
 
 ## Rules for the program
 - In Round 1, students are posted to their 1st choice whenever possible. 
